@@ -3,9 +3,15 @@ import { HeroText } from "./HeroText";
 import { LogoCloud } from "./LogoCloud";
 import { Navbar } from "./Navbar";
 
-export function Hero() {
+type HeroProps = {
+  className?: string;
+};
+
+export function Hero({ className }: HeroProps) {
   return (
-    <section className="flex min-h-svh w-full flex-col bg-[var(--page-canvas)]">
+    <section
+      className={`flex min-h-svh w-full flex-col bg-[var(--page-canvas)] ${className ?? ""}`}
+    >
       <Navbar />
       <div className="flex min-h-0 flex-1 flex-col px-4 pb-4 pt-3 sm:px-5 sm:pb-5 sm:pt-4 md:px-7 lg:px-10 lg:pb-6">
         <div className="mx-auto flex min-h-0 w-full max-w-[min(100%,88rem)] flex-1 flex-col gap-4 lg:gap-5">
