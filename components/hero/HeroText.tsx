@@ -10,8 +10,8 @@ const metrics = [
 
 export function HeroText() {
   return (
-    <div className="flex flex-col justify-center gap-8 font-sans">
-      <div className="flex flex-wrap items-center gap-2 text-sm text-stone-400">
+    <div className="flex flex-col justify-center gap-5 font-sans sm:gap-8">
+      <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5 text-xs text-stone-400 sm:gap-2 sm:text-sm">
         <span className="relative h-8 w-[5.5rem] shrink-0 sm:w-24">
           <Image
             src={BRAND_LOGO_SRC}
@@ -31,28 +31,28 @@ export function HeroText() {
         </Link>
       </div>
 
-      <div className="space-y-5">
-        <h1 className="font-serif text-4xl font-semibold leading-[1.08] tracking-tight text-[#f2f0e8] sm:text-5xl lg:text-[2.75rem] xl:text-6xl">
+      <div className="space-y-4 sm:space-y-5">
+        <h1 className="font-serif text-[clamp(1.45rem,4.5vw+0.5rem,2rem)] font-semibold leading-[1.06] tracking-tight text-[#f2f0e8] sm:text-3xl sm:leading-[1.08] md:text-4xl md:leading-[1.06] lg:text-5xl xl:text-6xl">
           <span className="block">Subscription Engineering Pods.</span>
           <span className="mt-1 block text-stone-300">For Frontier Tech.</span>
         </h1>
-        <p className="max-w-xl text-base leading-relaxed text-stone-400 sm:text-lg">
+        <p className="max-w-xl text-sm leading-relaxed text-stone-400 sm:text-base sm:leading-relaxed lg:text-lg">
           The 90-day hiring wall is your competitor&apos;s advantage. We
           provision a fully sovereign, 3-person engineering Pod into your stack
           in 21 days. Same cost as one local senior hire.
         </p>
       </div>
 
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-4 sm:gap-5">
         <Link
           href="#protocol"
-          className="inline-flex h-14 w-fit items-center justify-center rounded-full bg-[#3C4DFB] px-8 text-base font-semibold text-white shadow-sm transition-colors hover:bg-[#3039c4]"
+          className="inline-flex h-12 w-full max-w-md items-center justify-center rounded-full bg-[#3C4DFB] px-5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#3039c4] sm:h-14 sm:w-fit sm:px-8 sm:text-base"
         >
           Initiate the 21-Day Protocol
         </Link>
 
         <div
-          className="flex max-w-xl flex-wrap items-center gap-x-2 gap-y-2 border-t border-white/10 pt-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500 sm:gap-x-3 sm:text-xs sm:tracking-[0.2em]"
+          className="flex max-w-xl flex-wrap items-center gap-x-2 gap-y-1.5 border-t border-white/10 pt-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-stone-500 sm:gap-x-3 sm:gap-y-2 sm:pt-5 sm:text-xs sm:tracking-[0.2em]"
           aria-label="Key metrics"
         >
           {metrics.map((label, i) => (

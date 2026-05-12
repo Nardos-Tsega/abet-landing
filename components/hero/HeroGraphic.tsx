@@ -14,7 +14,7 @@ const GRID_MASK =
 
 export function HeroGraphic() {
   return (
-    <div className="relative h-full min-h-0 w-full overflow-x-hidden overflow-y-auto bg-transparent lg:overflow-x-visible lg:overflow-y-visible">
+    <div className="relative h-full min-h-0 w-full max-w-full overflow-x-hidden overflow-y-visible bg-transparent">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 z-0"
@@ -34,15 +34,15 @@ export function HeroGraphic() {
         }}
       />
 
-      <div className="relative z-10 flex h-full min-h-0 w-full items-center justify-center px-6 py-10 sm:px-10 sm:py-12 lg:px-12 lg:py-14">
-        <div className="flex max-w-full flex-col items-center gap-[16px] pb-20 sm:flex-row sm:items-start sm:justify-center sm:pb-24">
-          <div className="shrink-0 sm:pt-0">
+      <div className="relative z-10 flex h-full min-h-0 w-full max-w-full items-center justify-center px-3 py-5 sm:px-6 sm:py-8 md:px-5 md:py-6 lg:px-12 lg:py-14">
+        <div className="flex w-full max-w-full flex-col items-center justify-center gap-4 pb-6 md:flex-row md:items-center md:gap-5 md:pb-8 lg:items-start lg:justify-center lg:gap-6 lg:pb-24">
+          <div className="hidden shrink-0 md:block md:pt-0">
             <PodInfraTiles layout="stack" />
           </div>
 
-          <div className="relative shrink-0">
-            <div className="relative z-10 w-[24rem] max-w-[min(100%,24rem)] shrink-0">
-              <ProvisionTerminal />
+          <div className="relative z-10 mx-auto flex w-full min-w-0 max-w-[min(100%,24rem)] shrink-0 flex-col md:max-w-none md:flex-1">
+            <ProvisionTerminal />
+            <div className="hidden md:block">
               <OutcomeCard />
             </div>
           </div>

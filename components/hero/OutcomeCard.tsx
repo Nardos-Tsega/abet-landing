@@ -1,9 +1,9 @@
-/**
- * Overlaps bottom-right of the terminal (reference-style floating metrics card).
- */
+/** Tablet: block under terminal (`mt-5` = `md:gap-5`). lg+: absolute overlap. */
 export function OutcomeCard() {
   return (
-    <div className="absolute top-[calc(100%-0.75rem)] right-[-22px] z-20 w-[min(100%,18rem)] rounded-2xl bg-[#3C4DFB] p-3.5 shadow-xl shadow-black/40 sm:top-[calc(100%-1rem)] sm:right-[-30px] sm:w-[19.5rem] sm:p-4 md:right-[-40px] md:w-[20.5rem]">
+    <div
+      className="relative z-20 mx-auto mt-5 w-[min(calc(100%-1rem),20rem)] max-w-full rounded-2xl bg-[#3C4DFB] p-3 shadow-xl shadow-black/40 sm:p-3.5 lg:absolute lg:left-auto lg:right-[-30px] lg:top-[calc(100%-1rem)] lg:mx-0 lg:mt-0 lg:w-[20.5rem] lg:max-w-none lg:translate-x-0 lg:p-4 xl:right-[-40px]"
+    >
       <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-white/90 sm:text-xs sm:tracking-wide">
         Protocol SLA
       </p>

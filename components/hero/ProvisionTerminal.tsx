@@ -13,9 +13,7 @@ const LINE_PAUSE_MS = 380;
 /** Pause with full output visible before the sequence restarts */
 const LOOP_GAP_MS = 1400;
 
-/** Fixed layout: 24rem × 252px total — does not grow/shrink with viewport. */
-const TERMINAL_W = "24rem";
-const TERMINAL_W_MAX = "24rem";
+/** Title bar + body height (px). */
 const TITLEBAR_H = 52;
 const BODY_H = 200;
 
@@ -56,21 +54,17 @@ export function ProvisionTerminal() {
 
   return (
     <div
-      className="box-border shrink-0 grow-0 overflow-hidden rounded-2xl border border-white/10 bg-[#0c0c0c]/95 shadow-2xl shadow-black/50 ring-1 ring-white/5 backdrop-blur-sm sm:rounded-[1.25rem]"
-      style={{
-        width: TERMINAL_W,
-        maxWidth: `min(100%, ${TERMINAL_W_MAX})`,
-        height: TITLEBAR_H + BODY_H,
-      }}
+      className="box-border mx-auto w-full max-w-[24rem] shrink-0 grow-0 overflow-hidden rounded-xl border border-white/10 bg-[#0c0c0c]/95 shadow-2xl shadow-black/50 ring-1 ring-white/5 backdrop-blur-sm sm:rounded-[1.25rem]"
+      style={{ height: TITLEBAR_H + BODY_H }}
     >
       <div
-        className="flex shrink-0 items-center gap-2 border-b border-white/10 px-4 sm:px-5"
+        className="flex min-w-0 shrink-0 items-center gap-2 border-b border-white/10 px-3 sm:px-5"
         style={{ height: TITLEBAR_H }}
       >
         <span className="h-3 w-3 rounded-full bg-red-500/90" />
         <span className="h-3 w-3 rounded-full bg-amber-400/90" />
         <span className="h-3 w-3 rounded-full bg-emerald-500/90" />
-        <span className="ml-2 font-mono text-[11px] text-stone-500 sm:text-xs">
+        <span className="min-w-0 truncate pl-1 font-mono text-[10px] text-stone-500 sm:pl-0 sm:text-xs">
           abet-provision — zsh
         </span>
       </div>

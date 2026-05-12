@@ -13,10 +13,10 @@ export function Hero({ className }: HeroProps) {
       className={`flex min-h-svh w-full flex-col bg-[var(--page-canvas)] ${className ?? ""}`}
     >
       <Navbar />
-      <div className="flex min-h-0 flex-1 flex-col px-4 pb-4 pt-3 sm:px-5 sm:pb-5 sm:pt-4 md:px-7 lg:px-10 lg:pb-6">
-        <div className="mx-auto flex min-h-0 w-full max-w-[min(100%,88rem)] flex-1 flex-col gap-4 lg:gap-5">
+      <div className="flex min-h-0 flex-1 flex-col px-3 pb-[max(0.5rem,env(safe-area-inset-bottom,0px))] pt-2 pl-[max(0.75rem,env(safe-area-inset-left,0px))] pr-[max(0.75rem,env(safe-area-inset-right,0px))] sm:px-5 sm:pb-5 sm:pt-4 sm:pl-5 sm:pr-5 md:px-7 lg:px-10 lg:pb-6">
+        <div className="mx-auto flex min-h-0 w-full max-w-[min(100%,88rem)] flex-1 flex-col gap-3 sm:gap-4 lg:gap-5">
           <div
-            className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-[2rem] shadow-[0_24px_80px_-12px_rgba(0,6,38,0.45)] sm:rounded-[2.25rem] md:rounded-[2.75rem] lg:rounded-[3rem]"
+            className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-xl shadow-[0_24px_80px_-12px_rgba(0,6,38,0.45)] sm:rounded-[2rem] md:rounded-[2.75rem] lg:rounded-[3rem]"
             style={{
               backgroundColor: "#000626",
               backgroundImage: `
@@ -25,11 +25,11 @@ export function Hero({ className }: HeroProps) {
               `,
             }}
           >
-            <div className="grid min-h-0 flex-1 grid-cols-1 grid-rows-[auto_minmax(0,1fr)] bg-transparent lg:grid-cols-2 lg:grid-rows-1">
-              <div className="flex min-h-0 items-center bg-transparent px-6 py-10 sm:px-8 sm:py-12 lg:h-full lg:px-12 lg:py-14 xl:px-14">
+            <div className="grid min-h-0 flex-1 grid-cols-1 grid-rows-[auto_minmax(0,1fr)] bg-transparent md:grid-cols-2 md:grid-rows-1">
+              <div className="flex min-h-0 items-center bg-transparent px-4 py-6 sm:px-8 sm:py-10 md:h-full md:min-h-0 md:py-8 lg:px-12 lg:py-14 xl:px-14">
                 <HeroText />
               </div>
-              <div className="relative flex h-full min-h-[18rem] bg-transparent lg:min-h-0">
+              <div className="relative flex h-full min-h-[13rem] flex-1 bg-transparent sm:min-h-[15rem] md:min-h-0">
                 <HeroGraphic />
               </div>
             </div>

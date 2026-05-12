@@ -11,8 +11,8 @@ const navLinks = [
 
 export function Navbar() {
   return (
-    <header className="w-full shrink-0 border-b border-stone-300/40 bg-[var(--page-canvas)] px-5 py-4 sm:px-8 lg:px-12 xl:px-16">
-      <nav className="mx-auto flex w-full max-w-[min(100%,88rem)] flex-wrap items-center justify-between gap-4">
+    <header className="w-full shrink-0 border-b border-stone-300/40 bg-[var(--page-canvas)] px-3 py-3 pt-[max(0.75rem,env(safe-area-inset-top,0px))] sm:px-6 sm:py-3.5 md:px-8 md:py-4 lg:px-12 xl:px-16">
+      <nav className="mx-auto flex w-full max-w-[min(100%,88rem)] flex-wrap items-center justify-between gap-x-2 gap-y-2.5 sm:gap-x-3 md:flex-nowrap md:items-center md:gap-x-4 md:gap-y-0">
         <Link
           href="/"
           className="flex items-center text-sm font-medium text-stone-900"
@@ -29,18 +29,18 @@ export function Navbar() {
           </span>
         </Link>
 
-        <ul className="order-3 flex w-full flex-wrap items-center justify-center gap-x-1 text-sm font-medium text-stone-600 md:order-none md:w-auto md:gap-x-0">
+        <ul className="order-3 flex w-full min-w-0 flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-[11px] font-medium leading-snug text-stone-600 sm:gap-x-2 sm:text-xs md:order-none md:flex md:w-auto md:max-w-none md:flex-nowrap md:justify-center md:gap-x-3 md:text-sm lg:gap-x-4">
           {navLinks.map((item, i) => (
             <Fragment key={item.href}>
               {i > 0 && (
-                <li className="hidden px-2 text-stone-400 md:inline" aria-hidden>
+                <li className="hidden px-1.5 text-stone-400 md:inline lg:px-2" aria-hidden>
                   |
                 </li>
               )}
               <li>
                 <Link
                   href={item.href}
-                  className="inline-block px-1 transition-colors hover:text-stone-900 md:px-0"
+                  className="inline-block whitespace-nowrap px-0.5 transition-colors hover:text-stone-900 sm:px-1 md:px-1.5"
                 >
                   {item.label}
                 </Link>
@@ -52,7 +52,7 @@ export function Navbar() {
         <div className="flex items-center">
           <Link
             href="#protocol"
-            className="rounded-full bg-[#3C4DFB] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#3039c4] sm:px-5"
+            className="shrink-0 whitespace-nowrap rounded-full bg-[#3C4DFB] px-3 py-2 text-[11px] font-semibold leading-tight text-white transition-colors hover:bg-[#3039c4] sm:px-4 sm:text-xs md:px-5 md:py-2.5 md:text-sm"
           >
             Initiate the 21-Day Protocol
           </Link>

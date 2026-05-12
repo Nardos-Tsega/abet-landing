@@ -31,7 +31,7 @@ export function MissionContent() {
 export function MissionSection() {
   return (
     <section
-      className="relative z-10 flex min-h-svh flex-col justify-center bg-[var(--page-canvas)] px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28"
+      className="relative z-10 flex min-h-svh flex-col justify-center bg-[var(--page-canvas)] px-5 py-16 sm:px-8 sm:py-20 md:px-10 md:py-24 lg:px-12 lg:py-28"
       aria-labelledby="mission-heading"
     >
       <MissionContent />
