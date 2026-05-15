@@ -18,10 +18,10 @@ export function Hero({ className }: HeroProps) {
           <div
             className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-xl shadow-[0_24px_80px_-12px_rgba(0,6,38,0.45)] sm:rounded-[2rem] md:rounded-[2.75rem] lg:rounded-[3rem]"
             style={{
-              backgroundColor: "#000626",
+              backgroundColor: "var(--hero-surface)",
               backgroundImage: `
-                radial-gradient(ellipse 95% 62% at 72% 10%, rgba(60, 77, 251, 0.14), transparent 54%),
-                linear-gradient(165deg, #020a38 0%, #000626 38%, #000318 72%, #00040f 100%)
+                radial-gradient(ellipse 95% 62% at 72% 10%, var(--accent-glow-soft), transparent 54%),
+                linear-gradient(165deg, #020a38 0%, var(--hero-surface) 38%, #000318 72%, #00040f 100%)
               `,
             }}
           >

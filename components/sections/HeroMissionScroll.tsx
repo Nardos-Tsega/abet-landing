@@ -7,7 +7,7 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useRef, useState, useSyncExternalStore } from "react";
 import { Hero } from "@/components/hero/Hero";
 import {
   MissionContent,
@@ -103,12 +103,6 @@ export function HeroMissionScroll() {
     setHeroInert(v > 0.24);
     setMissionInteractive(v > 0.2);
   });
-
-  useEffect(() => {
-    const v = p.get();
-    setHeroInert(v > 0.24);
-    setMissionInteractive(v > 0.2);
-  }, [p]);
 
   if (reducedMotion || narrowStacked) {
     return (

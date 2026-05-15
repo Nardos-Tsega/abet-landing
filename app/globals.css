@@ -6,6 +6,41 @@
   --page-canvas: #f2f0e8;
   --hero-surface: #000626;
   --hero-surface-elevated: #0a1448;
+  --accent: #3c4dfb;
+  --accent-mid: #4d5de8;
+  --accent-deep: #2a3fb8;
+  --accent-gradient: linear-gradient(
+    135deg,
+    #7a88f0 0%,
+    #5b6ae8 28%,
+    #3c4dfb 58%,
+    #2a3fb8 100%
+  );
+  --accent-gradient-hover: linear-gradient(
+    135deg,
+    #6b7aef 0%,
+    #4d5de8 35%,
+    #3548d4 65%,
+    #2438a5 100%
+  );
+  --accent-glow-soft: rgba(60, 77, 251, 0.1);
+  --surface-section-dark: #050a28;
+  --surface-section-muted: #ebe8df;
+  --surface-dark-gradient: linear-gradient(
+    168deg,
+    #020510 0%,
+    var(--surface-section-dark) 48%,
+    #000208 100%
+  );
+  --surface-dark-gradient-alt: linear-gradient(
+    180deg,
+    #02040a 0%,
+    var(--hero-surface) 42%,
+    #000208 100%
+  );
+  --border-subtle: rgba(26, 26, 26, 0.12);
+  --border-on-dark: rgba(255, 255, 255, 0.1);
+  --text-on-dark: #e8e6e1;
 }
 
 @theme inline {
@@ -13,9 +48,12 @@
   --color-foreground: var(--foreground);
   --color-page-canvas: var(--page-canvas);
   --color-hero-surface: var(--hero-surface);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-serif: var(--font-playfair);
+  --color-accent: var(--accent);
+  --color-surface-section-dark: var(--surface-section-dark);
+  --color-surface-section-muted: var(--surface-section-muted);
+  --font-sans: var(--font-aeonik), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-serif: var(--font-aeonik), ui-sans-serif, system-ui, sans-serif;
 }
 
 html {
@@ -25,7 +63,7 @@ html {
 body {
   background: var(--page-canvas);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-aeonik), ui-sans-serif, system-ui, sans-serif;
 }
 
 @keyframes abet-logo-marquee {
@@ -38,7 +76,7 @@ body {
 }
 
 .abet-marquee-track {
-  animation: abet-logo-marquee 48s linear infinite;
+  animation: abet-logo-marquee 58s linear infinite;
   will-change: transform;
 }
 
@@ -47,4 +85,78 @@ body {
     animation: none;
     transform: translate3d(0, 0, 0);
   }
+}
+
+/* Dark sections: hero-style 72px grid (matches HeroGraphic) via ::before */
+.abet-surface-dark,
+.abet-surface-dark-alt {
+  position: relative;
+  isolation: isolate;
+  color: var(--text-on-dark);
+}
+
+.abet-surface-dark {
+  background: var(--surface-dark-gradient);
+}
+
+.abet-surface-dark-alt {
+  background: var(--surface-dark-gradient-alt);
+}
+
+.abet-surface-dark::before,
+.abet-surface-dark-alt::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(148, 190, 255, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 190, 255, 0.12) 1px, transparent 1px);
+  background-size: 72px 72px;
+  background-repeat: repeat;
+  -webkit-mask-image: radial-gradient(
+    ellipse 82% 78% at 50% 42%,
+    #fff 0%,
+    rgba(255, 255, 255, 0.5) 38%,
+    rgba(255, 255, 255, 0.18) 62%,
+    transparent 82%
+  );
+  mask-image: radial-gradient(
+    ellipse 82% 78% at 50% 42%,
+    #fff 0%,
+    rgba(255, 255, 255, 0.5) 38%,
+    rgba(255, 255, 255, 0.18) 62%,
+    transparent 82%
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+/* Content wrapper — avoids breaking position:sticky on direct children */
+.abet-section-content {
+  position: relative;
+  z-index: 1;
+}
+
+.abet-accent-cta {
+  background: var(--accent-gradient);
+  color: #fff;
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.abet-accent-cta:hover {
+  background: var(--accent-gradient-hover);
+}
+
+.abet-accent-rule {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(91, 106, 232, 0.35) 35%,
+    rgba(60, 77, 251, 0.28) 65%,
+    transparent
+  );
 }

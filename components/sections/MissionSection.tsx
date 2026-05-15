@@ -3,12 +3,12 @@ export function MissionContent() {
     <div className="mission-scroll-panel mx-auto w-full max-w-[min(100%,40rem)] lg:max-w-[44rem]">
       <h2
         id="mission-heading"
-        className="font-serif text-4xl font-semibold tracking-tight text-stone-900 sm:text-5xl"
+        className="text-4xl font-semibold tracking-[-0.03em] text-stone-900 sm:text-5xl"
       >
         Mission.
       </h2>
 
-      <blockquote className="mt-10 border-l-2 border-[#3C4DFB]/50 pl-6 font-serif text-2xl font-medium leading-snug text-stone-800 sm:mt-12 sm:pl-8 sm:text-3xl sm:leading-snug">
+      <blockquote className="mt-10 border-l-2 border-[var(--hero-surface-elevated)] pl-6 text-2xl font-medium leading-snug text-stone-800 sm:mt-12 sm:pl-8 sm:text-3xl sm:leading-snug">
         &ldquo;To eliminate the latency between human ambition and technical
         execution.&rdquo;
       </blockquote>

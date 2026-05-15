@@ -19,8 +19,8 @@ export function OutcomeCard() {
         <p className="mt-0.5 text-[11px] font-medium leading-snug text-stone-600 sm:text-sm">
           Days to sovereign Pod in your stack
         </p>
-        <p className="mt-2 border-t border-[#3C4DFB]/18 pt-2 text-[10px] font-semibold uppercase tracking-wider text-stone-500">
-          US-Governed · Fixed OpEx
+        <p className="mt-2 border-t border-white/10 pt-2 text-[10px] font-semibold uppercase tracking-wider text-stone-500">
+          Enterprise MSAs · Fixed OpEx
         </p>
       </div>
     </div>
