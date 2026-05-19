@@ -18,7 +18,7 @@ const POD_SCROLL_RATIO = 2.95;
 const NARROW_MQ = "(max-width: 767px)";
 
 function subscribeNarrowViewport(cb: () => void) {
-  if (typeof window === "undefined") return () => {};
+  if (typeof window === "undefined") return () => { };
   const mq = window.matchMedia(NARROW_MQ);
   mq.addEventListener("change", cb);
   return () => mq.removeEventListener("change", cb);

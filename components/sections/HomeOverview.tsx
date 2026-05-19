@@ -10,6 +10,7 @@ import { BenchmarkStrip } from "@/components/sections/marketing/BenchmarkStrip";
 import { EditorialHighlights } from "@/components/sections/marketing/EditorialHighlights";
 import { DomainCorridor } from "@/components/sections/marketing/DomainCorridor";
 import { TrustTiles } from "@/components/sections/marketing/TrustTiles";
+import { ScaleOverlayScroll } from "@/components/layout/ScaleOverlayScroll";
 
 const protocolSteps = [
   {
@@ -32,13 +33,32 @@ const protocolSteps = [
 export function HomeOverview() {
   return (
     <div className="w-full bg-[var(--page-canvas)] text-[var(--foreground)]">
-
-      {/* ── Section 3: The Friction + Section 5: Product + Section 8: The Edge ── */}
       <NarrativeSections />
 
-            {/* ── Section 11: Footer CTA — "Stop Recruiting. Start Provisioning." ── */}
-            <section className="abet-surface-dark border-b border-[var(--border-on-dark)]">
-        <div className="abet-section-content mx-auto max-w-[min(100%,88rem)] px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-40">
+
+
+      {/* ── Section 6: Active Deployments ── */}
+      <CaseStudyCarousel />
+
+      {/* ── Section 7: The Three Environments ── */}
+      <DomainCloud />
+      <div id="domains">
+        <DomainCorridor />
+      </div>
+
+      {/* ── Section 9 lead-in: 21-day stat pull-quote ── */}
+      <StatCallout />
+
+      {/* ── Section 10: Trust & Security ── */}
+      <TrustTiles />
+      <BenchmarkStrip />
+
+      <EditorialHighlights />
+
+      {/* ── Section 11: Footer CTA — "Stop Recruiting. Start Provisioning." ── */}
+      <div className="sticky top-0 z-10 flex min-h-[100svh] w-full flex-col bg-[var(--page-canvas)] px-3 pb-[max(0.5rem,env(safe-area-inset-bottom,0px))] pt-2 pl-[max(0.75rem,env(safe-area-inset-left,0px))] pr-[max(0.75rem,env(safe-area-inset-right,0px))] sm:px-5 sm:pb-5 sm:pt-4 sm:pl-5 sm:pr-5 md:px-7 lg:px-10 lg:pb-6">
+        <section className="mx-auto w-full max-w-[min(100%,88rem)] relative overflow-hidden rounded-xl shadow-[0_24px_80px_-12px_rgba(0,6,38,0.45)] sm:rounded-[2rem] md:rounded-[2.75rem] lg:rounded-[3rem] abet-surface-dark border border-[var(--border-on-dark)]">
+          <div className="abet-section-content w-full px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-40">
 
           <SectionEyebrow onDark>The operation</SectionEyebrow>
           <AnimatedHeadline
@@ -79,30 +99,9 @@ export function HomeOverview() {
               </li>
             ))}
           </ol>
-        </div>
-      </section>
-
-      
-    
-
-      {/* ── Section 6: Active Deployments ── */}
-      {/*<CaseStudyCarousel />*/}
-
-      {/* ── Section 7: The Three Environments ── */}
-      <DomainCloud />
-      {/*<div id="domains">
-        <DomainCorridor />
-      </div> */}
-      {/* ── Section 9 lead-in: 21-day stat pull-quote ── */}
-      <StatCallout />
-
-      {/* ── Section 10: Trust & Security ── */}
-      <TrustTiles />
-      <BenchmarkStrip />
-
-      {/* ── Secondary page depth links ── */}
-      <EditorialHighlights />
-
+          </div>
+        </section>
+      </div>
 
       <SiteFooter />
     </div>

@@ -49,8 +49,9 @@ function XIcon() {
 
 export function SiteFooter() {
   return (
-    <footer className="abet-surface-dark border-t border-[var(--border-on-dark)]">
-      <div className="mx-auto max-w-[min(100%,88rem)] px-5 lg:px-12">
+    <div className="relative z-10 flex w-full flex-col bg-[var(--page-canvas)] px-3 pb-[max(0.5rem,env(safe-area-inset-bottom,0px))] pt-2 pl-[max(0.75rem,env(safe-area-inset-left,0px))] pr-[max(0.75rem,env(safe-area-inset-right,0px))] sm:px-5 sm:pb-5 sm:pt-4 sm:pl-5 sm:pr-5 md:px-7 lg:px-10 lg:pb-6">
+      <footer className="mx-auto w-full max-w-[min(100%,88rem)] relative overflow-hidden rounded-xl shadow-[0_24px_80px_-12px_rgba(0,6,38,0.45)] sm:rounded-[2rem] md:rounded-[2.75rem] lg:rounded-[3rem] abet-surface-dark border border-[var(--border-on-dark)]">
+        <div className="mx-auto w-full px-5 lg:px-12">
 
         {/* Five-column nav grid */}
         <div className="grid gap-10 border-b border-white/10 py-16 sm:grid-cols-2 lg:grid-cols-5 lg:gap-8 lg:py-20">
@@ -165,8 +166,8 @@ export function SiteFooter() {
             </div>
           </div>
         </div>
-
-      </div>
-    </footer>
+        </div>
+      </footer>
+    </div>
   );
 }

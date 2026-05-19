@@ -18,7 +18,7 @@ export function DomainCorridor() {
   const glowOpacity = useTransform(scrollYProgress, [0.15, 0.45, 0.85], [0.25, 0.5, 0.25]);
 
   return (
-    <div ref={ref} className="relative min-h-[110vh] w-full border-b border-[var(--border-on-dark)]">
+    <div ref={ref} className="relative z-10 min-h-[110vh] w-full border-b border-[var(--border-on-dark)] abet-surface-dark-alt">
       <div className="abet-surface-dark-alt sticky top-0 flex min-h-svh w-full flex-col justify-center overflow-hidden">
         {!reduced && (
           <motion.div
@@ -57,7 +57,7 @@ export function DomainCorridor() {
             {domainLoop.map((d, i) => (
               <article
                 key={`${d.key}-${i}`}
-                className="w-[min(88vw,19rem)] shrink-0 snap-center overflow-hidden rounded-2xl border border-white/10 bg-[var(--hero-surface-elevated)]/50 sm:w-[min(72vw,20rem)]"
+                className="group w-[min(88vw,19rem)] shrink-0 snap-center overflow-hidden rounded-2xl border border-white/10 bg-[var(--hero-surface-elevated)]/50 transition-all duration-300 hover:-translate-y-1 hover:bg-[var(--hero-surface-elevated)]/80 sm:w-[min(72vw,20rem)]"
               >
                 <div className="relative aspect-[16/11] w-full overflow-hidden">
                   <Image
@@ -65,7 +65,7 @@ export function DomainCorridor() {
                     alt={d.imageAlt}
                     fill
                     sizes="(max-width: 640px) 88vw, 20rem"
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                     priority={i < 2}
                   />
                   <div

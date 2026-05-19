@@ -15,7 +15,7 @@ const caseStudyLoop = [...caseStudies, ...caseStudies] as const;
 
 function CaseCard({ c }: { c: (typeof caseStudies)[number] }) {
   return (
-    <article className="flex w-[min(88vw,22rem)] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-[var(--border-subtle)] bg-white shadow-sm sm:w-[min(72vw,24rem)]">
+    <article className="group flex w-[min(88vw,22rem)] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-[var(--border-subtle)] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md sm:w-[min(72vw,24rem)]">
       <div className="relative aspect-[16/10] w-full">
         <Image
           src={c.imageSrc}

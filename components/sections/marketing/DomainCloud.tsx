@@ -18,7 +18,7 @@ export function DomainCloud() {
 
   return (
     <section
-      className="border-b border-[var(--border-subtle)] bg-[var(--page-canvas)]"
+      className="relative z-10 bg-[var(--page-canvas)]"
       aria-labelledby="domain-cloud-heading"
     >
       <div className="abet-section-content mx-auto max-w-[min(100%,88rem)] px-5 py-20 sm:px-8 sm:py-28 lg:px-12 lg:py-36">
