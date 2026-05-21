@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
+import { PageCurtain } from "@/components/layout/PageCurtain";
+import { Navbar } from "@/components/hero/Navbar";
 import "./globals.css";
 
 /**
@@ -34,7 +36,11 @@ export default function RootLayout({
       lang="en"
       className={`${aeonik.variable} ${geistMono.variable} min-h-svh h-full bg-[var(--page-canvas)] antialiased`}
     >
-      <body className="min-h-svh flex flex-col bg-[var(--page-canvas)] font-sans">{children}</body>
+      <body className="min-h-svh flex flex-col bg-[var(--page-canvas)] font-sans">
+        <PageCurtain />
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }

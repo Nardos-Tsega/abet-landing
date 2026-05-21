@@ -1,6 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
-import { BRAND_LOGO_SRC } from "@/lib/brand";
+import { HeroHeadline } from "./HeroHeadline";
 
 const metrics = [
   "Near Zero Churn",
@@ -12,15 +11,7 @@ export function HeroText() {
   return (
     <div className="flex flex-col justify-center gap-5 font-sans sm:gap-8">
       <div className="flex flex-wrap items-center gap-x-2 gap-y-1.5 text-xs text-stone-400 sm:gap-2 sm:text-sm">
-        <span className="relative h-8 w-[5.5rem] shrink-0 sm:w-24">
-          <Image
-            src={BRAND_LOGO_SRC}
-            alt="Abet"
-            fill
-            className="object-contain object-left opacity-95"
-            sizes="96px"
-          />
-        </span>
+        
         <span className="font-medium text-stone-200">21-Day Protocol</span>
         <span className="text-stone-600">·</span>
         <Link
@@ -32,10 +23,7 @@ export function HeroText() {
       </div>
 
       <div className="space-y-4 sm:space-y-5">
-        <h1 className="font-serif text-[clamp(1.45rem,4.5vw+0.5rem,2rem)] font-semibold leading-[1.06] tracking-tight text-[#f2f0e8] sm:text-3xl sm:leading-[1.08] md:text-4xl md:leading-[1.06] lg:text-5xl xl:text-6xl">
-          <span className="block">Subscription Engineering Pods.</span>
-          <span className="mt-1 block text-stone-300">For Frontier Tech.</span>
-        </h1>
+        <HeroHeadline />
         <p className="max-w-xl text-sm leading-relaxed text-stone-400 sm:text-base sm:leading-relaxed lg:text-lg">
           The 90-day hiring wall is your competitor&apos;s advantage. We
           provision a fully sovereign, 3-person engineering Pod into your stack
@@ -52,14 +40,14 @@ export function HeroText() {
         </Link>
 
         <div
-          className="flex max-w-xl flex-wrap items-center gap-x-2 gap-y-1.5 border-t border-white/10 pt-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-stone-500 sm:gap-x-3 sm:gap-y-2 sm:pt-5 sm:text-xs sm:tracking-[0.2em]"
+          className="flex max-w-xl flex-wrap items-center gap-x-1 gap-y-1.5 border-t border-white/10 pt-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-stone-500 sm:gap-x-0.5 sm:gap-y-2 sm:pt-5 sm:text-xs sm:tracking-[0.2em]"
           aria-label="Key metrics"
         >
           {metrics.map((label, i) => (
-            <span key={label} className="inline-flex items-center gap-x-2 sm:gap-x-3">
+            <span key={label} className="inline-flex items-center gap-x-1.5 sm:gap-x-1">
               {i > 0 && (
                 <span className="text-stone-600" aria-hidden>
-                  |
+                  .
                 </span>
               )}
               <span className="text-stone-400">{label}</span>

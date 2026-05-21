@@ -7,7 +7,6 @@ export const narrativeSections = [
   {
     key: "friction",
     tone: "light" as const,
-    eyebrow: "The friction",
     headline: "The 90-Day Latency Tax.",
     sublines: [
       "In frontier tech, velocity is your only moat.",
@@ -20,7 +19,6 @@ export const narrativeSections = [
   {
     key: "product",
     tone: "dark" as const,
-    eyebrow: "The product",
     headline: "We Don't Sell Hours. We Provision Capacity.",
     sublines: [
       "Traditional outsourcing sells loose freelancers and billable hours.",
@@ -33,7 +31,6 @@ export const narrativeSections = [
   {
     key: "edge",
     tone: "light" as const,
-    eyebrow: "The edge",
     headline: "Sovereign Execution. Near-Zero Churn.",
     sublines: [
       "Africa's Build-First Economy.",

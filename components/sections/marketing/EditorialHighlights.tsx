@@ -21,7 +21,7 @@ export function EditorialHighlights() {
           <Link
             key={item.key}
             href={item.href}
-            className="group flex flex-col overflow-hidden rounded-2xl border border-[var(--border-subtle)] bg-white/80 shadow-sm transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-stone-300/80 hover:shadow-[0_20px_50px_-28px_rgba(0,6,38,0.14)]"
+            className="group flex flex-col overflow-hidden rounded-3xl border border-[var(--border-subtle)] bg-white/80 shadow-sm transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-stone-300/80 hover:shadow-[0_20px_50px_-28px_rgba(0,6,38,0.14)]"
           >
             <div className="relative aspect-[16/10] w-full overflow-hidden">
               <Image

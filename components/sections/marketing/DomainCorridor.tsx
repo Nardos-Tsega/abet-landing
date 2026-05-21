@@ -3,10 +3,10 @@
 import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { SectionEyebrow, SectionLead, SectionTitle } from "@/components/layout/MarketingSection";
+import { SectionLead, SectionTitle } from "@/components/layout/MarketingSection";
 import { domainCorridorItems } from "@/lib/home-marketing";
 
-const domainLoop = [...domainCorridorItems, ...domainCorridorItems];
+const domainLoop = domainCorridorItems;
 
 export function DomainCorridor() {
   const ref = useRef<HTMLDivElement>(null);
@@ -33,7 +33,6 @@ export function DomainCorridor() {
         )}
 
         <div className="abet-section-content relative z-10 mx-auto w-full max-w-[min(100%,88rem)] px-5 py-12 sm:px-8 sm:py-16 lg:px-12">
-          <SectionEyebrow onDark>Where we deploy</SectionEyebrow>
           <SectionTitle
             onDark
             className="max-w-[20ch] text-3xl leading-[1.06] sm:text-4xl lg:text-[2.5rem]"
@@ -41,12 +40,8 @@ export function DomainCorridor() {
             Three Environments. One Standard.
           </SectionTitle>
           <SectionLead onDark className="max-w-xl">
-            Select the environment that maps to your roadmap. Each is a dedicated talent architecture—not a generalist bench.
+            Select the environment that maps to your roadmap. Each is a dedicated talent architecture, not a generalist bench.
           </SectionLead>
-          <p className="mt-4 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-500">
-            <span className="inline-block h-px w-8 bg-white/25" aria-hidden />
-            Scroll to explore
-          </p>
 
           <div
             className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 sm:mt-12 sm:gap-5 [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-white/20 [&::-webkit-scrollbar-track]:bg-white/5"
@@ -57,7 +52,7 @@ export function DomainCorridor() {
             {domainLoop.map((d, i) => (
               <article
                 key={`${d.key}-${i}`}
-                className="group w-[min(88vw,19rem)] shrink-0 snap-center overflow-hidden rounded-2xl border border-white/10 bg-[var(--hero-surface-elevated)]/50 transition-all duration-300 hover:-translate-y-1 hover:bg-[var(--hero-surface-elevated)]/80 sm:w-[min(72vw,20rem)]"
+                className="group w-[min(88vw,19rem)] shrink-0 snap-center overflow-hidden rounded-3xl border border-white/10 bg-[var(--hero-surface-elevated)]/50 transition-all duration-300 hover:-translate-y-1 hover:bg-[var(--hero-surface-elevated)]/80 sm:w-[min(72vw,20rem)]"
               >
                 <div className="relative aspect-[16/11] w-full overflow-hidden">
                   <Image

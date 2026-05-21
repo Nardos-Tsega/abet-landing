@@ -1,60 +1,128 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useReducedMotion } from "framer-motion";
 import {
   MarketingSection,
-  SectionEyebrow,
   SectionLead,
   SectionTitle,
 } from "@/components/layout/MarketingSection";
 import { caseStudies } from "@/lib/home-marketing";
 
-const caseStudyLoop = [...caseStudies, ...caseStudies] as const;
+// ─── Per-card accent colours (rise-fill on hover) ────────────────────────────
+const CARD_ACCENT = ["#6b48a0", "#8a6a3a"] as const;
 
-function CaseCard({ c }: { c: (typeof caseStudies)[number] }) {
+// ─── Icons ────────────────────────────────────────────────────────────────────
+
+function TrendIcon() {
   return (
-    <article className="group flex w-[min(88vw,22rem)] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-[var(--border-subtle)] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md sm:w-[min(72vw,24rem)]">
-      <div className="relative aspect-[16/10] w-full">
-        <Image
-          src={c.imageSrc}
-          alt={c.imageAlt}
-          fill
-          sizes="(max-width: 768px) 88vw, 24rem"
-          className="object-cover"
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden>
+      <path
+        d="M2 14l5-5 3 3 6-7"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M14 5h3v3"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function ExpandIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden>
+      <rect x="2" y="10" width="4" height="8" rx="1" fill="currentColor" opacity="0.4" />
+      <rect x="8" y="6" width="4" height="12" rx="1" fill="currentColor" opacity="0.7" />
+      <rect x="14" y="2" width="4" height="16" rx="1" fill="currentColor" />
+    </svg>
+  );
+}
+
+const ICONS = [TrendIcon, ExpandIcon] as const;
+
+// ─── Single card ──────────────────────────────────────────────────────────────
+
+type CaseItem = (typeof caseStudies)[number];
+
+function CaseCard({
+  c,
+  color,
+  Icon,
+  reduced,
+}: {
+  c: CaseItem;
+  color: string;
+  Icon: () => React.JSX.Element;
+  reduced: boolean | null;
+}) {
+  return (
+    <article className="group relative flex w-[min(88vw,22rem)] shrink-0 flex-col overflow-hidden rounded-3xl border border-[var(--border-subtle)] bg-white shadow-sm">
+      {/* ── Rising colour fill (disabled for reduced-motion) ── */}
+      {!reduced && (
+        <div
+          className="pointer-events-none absolute inset-0 translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0"
+          style={{ backgroundColor: color }}
+          aria-hidden
         />
-      </div>
-      <div className="flex flex-1 flex-col p-7 sm:p-8">
-        <p className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-stone-500">
+      )}
+
+      {/* ── Content ── */}
+      <div className="relative z-10 flex min-h-[22rem] flex-1 flex-col p-7 sm:p-8">
+        {/* Icon box */}
+        <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-stone-100 text-stone-600 transition-all duration-500 group-hover:bg-white/20 group-hover:text-white">
+          <Icon />
+        </div>
+
+        {/* Kicker */}
+        <p className="mt-8 font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-stone-500 transition-colors duration-300 group-hover:text-white/60">
           {c.kicker}
         </p>
-        <h3 className="mt-2 text-lg font-semibold text-stone-900 sm:text-xl">{c.title}</h3>
-        <p className="mt-3 flex-1 text-sm leading-relaxed text-stone-600">{c.outcome}</p>
-        <p
-          className={`mt-6 text-[11px] font-semibold uppercase tracking-[0.18em] ${
-            c.status === "Operational" ? "text-emerald-700" : "text-stone-500"
-          }`}
-        >
-          {c.status}
+
+        {/* Title */}
+        <h3 className="mt-2 text-xl font-semibold tracking-tight text-stone-900 transition-colors duration-300 group-hover:text-white sm:text-2xl">
+          {c.title}
+        </h3>
+
+        {/* Outcome */}
+        <p className="mt-3 flex-1 text-sm leading-relaxed text-stone-600 transition-colors duration-300 group-hover:text-white/80">
+          {c.outcome}
         </p>
-        <Link
-          href={c.href}
-          className="mt-4 inline-flex text-sm font-semibold text-stone-900 after:ml-1 after:content-['→'] after:text-stone-400 hover:after:translate-x-0.5"
-        >
-          Learn more
-        </Link>
+
+        {/* Status + CTA */}
+        <div className="mt-6 flex items-center justify-between gap-3">
+          <p
+            className={`text-[11px] font-semibold uppercase tracking-[0.18em] transition-colors duration-300 group-hover:text-white/80 ${
+              c.status === "Operational" ? "text-emerald-700" : "text-stone-500"
+            }`}
+          >
+            ● {c.status}
+          </p>
+          <Link
+            href={c.href}
+            className="inline-flex shrink-0 items-center gap-1 rounded-full bg-stone-100 px-4 py-2 text-[11px] font-semibold text-stone-800 transition-all duration-300 group-hover:bg-white/20 group-hover:text-white"
+          >
+            Learn More <span aria-hidden>→</span>
+          </Link>
+        </div>
       </div>
     </article>
   );
 }
+
+// ─── Public export ────────────────────────────────────────────────────────────
 
 export function CaseStudyCarousel() {
   const reduced = useReducedMotion();
 
   return (
     <MarketingSection aria-labelledby="cases-heading" contentClassName="!pb-8 sm:!pb-10">
-      <SectionEyebrow>Active Deployments</SectionEyebrow>
       <SectionTitle id="cases-heading" className="text-3xl sm:text-4xl">
         Deployed. Executing. Delivering.
       </SectionTitle>
@@ -62,42 +130,17 @@ export function CaseStudyCarousel() {
         Sovereign Pods actively embedded in mission-critical enterprise stacks. We prove velocity.
       </SectionLead>
 
-      {reduced ? (
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
-          {caseStudies.map((c) => (
-            <article
-              key={c.id}
-              className="flex flex-col overflow-hidden rounded-2xl border border-[var(--border-subtle)] bg-white shadow-sm"
-            >
-              <div className="relative aspect-[16/10] w-full">
-                <Image src={c.imageSrc} alt={c.imageAlt} fill sizes="33vw" className="object-cover" />
-              </div>
-              <div className="flex flex-1 flex-col p-7">
-                <p className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-stone-500">
-                  {c.kicker}
-                </p>
-                <h3 className="mt-2 text-lg font-semibold text-stone-900">{c.title}</h3>
-                <p className="mt-3 flex-1 text-sm text-stone-600">{c.outcome}</p>
-                <Link href={c.href} className="mt-4 text-sm font-semibold text-stone-900 hover:underline">
-                  Read the model
-                </Link>
-              </div>
-            </article>
-          ))}
-        </div>
-      ) : (
-        <div
-          className="-mx-5 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 pt-1 sm:-mx-8 sm:gap-5 sm:px-8 lg:-mx-12 lg:px-12 [&::-webkit-scrollbar]:h-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-stone-300 [&::-webkit-scrollbar-track]:bg-stone-100"
-          tabIndex={0}
-          role="region"
-          aria-roledescription="carousel"
-          aria-label="Case studies"
-        >
-          {caseStudyLoop.map((c, i) => (
-            <CaseCard key={`${c.id}-${i}`} c={c} />
-          ))}
-        </div>
-      )}
+      <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-5 lg:gap-6">
+        {caseStudies.map((c, i) => (
+          <CaseCard
+            key={c.id}
+            c={c}
+            color={CARD_ACCENT[i]}
+            Icon={ICONS[i]}
+            reduced={reduced}
+          />
+        ))}
+      </div>
     </MarketingSection>
   );
 }

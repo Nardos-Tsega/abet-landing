@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const LINES = [
   '> abet provision --env "Frontier AI"',
@@ -10,17 +10,71 @@ const LINES = [
 
 const TYPE_MS = 28;
 const LINE_PAUSE_MS = 380;
-/** Pause with full output visible before the sequence restarts */
 const LOOP_GAP_MS = 1400;
 
-/** Title bar + body height (px). */
 const TITLEBAR_H = 52;
 const BODY_H = 200;
+
+/**
+ * Characters used for the scramble pool on the DEPLOYING status line.
+ * Skewing toward uppercase + symbols keeps the "terminal output" feel.
+ */
+const SCRAMBLE_CHARS =
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*[]{}/<>?_-=+|";
+
+/**
+ * Returns the correctly typed portion of `line` up to `charIdx`,
+ * then appends a scrambled lookahead (2-4 chars ahead of the cursor)
+ * so the line looks like it's resolving from noise.
+ * Only applied to the last (status) line.
+ */
+function buildScrambleLine(
+  line: string,
+  charIdx: number,
+  tick: number
+): string {
+  const settled = line.slice(0, charIdx);
+  // 2-char noise window ahead of cursor
+  const lookaheadCount = Math.min(3, line.length - charIdx);
+  let noise = "";
+  for (let i = 0; i < lookaheadCount; i++) {
+    noise += SCRAMBLE_CHARS[(tick * (i + 7) + i * 13) % SCRAMBLE_CHARS.length];
+  }
+  return settled + noise;
+}
 
 export function ProvisionTerminal() {
   const [lineIdx, setLineIdx] = useState(0);
   const [charIdx, setCharIdx] = useState(0);
+  // Tick increments ~every 40 ms while on the last line to cycle scramble chars
+  const [scrambleTick, setScrambleTick] = useState(0);
+  const scrambleRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
+  // Start / stop scramble ticker when on the DEPLOYING line
+  useEffect(() => {
+    const isStatusLine = lineIdx === 2 && charIdx < LINES[2].length;
+    if (isStatusLine) {
+      if (!scrambleRef.current) {
+        scrambleRef.current = setInterval(
+          () => setScrambleTick((t) => t + 1),
+          38
+        );
+      }
+    } else {
+      if (scrambleRef.current) {
+        clearInterval(scrambleRef.current);
+        scrambleRef.current = null;
+      }
+    }
+    return () => {
+      if (scrambleRef.current) {
+        clearInterval(scrambleRef.current);
+        scrambleRef.current = null;
+      }
+    };
+  }, [lineIdx, charIdx]);
+
+  // Typewriter driver
   useEffect(() => {
     if (lineIdx >= LINES.length) {
       const t = setTimeout(() => {
@@ -43,14 +97,19 @@ export function ProvisionTerminal() {
     return () => clearTimeout(t);
   }, [lineIdx, charIdx]);
 
-  const visible = LINES.map((line, i) => {
-    if (i < lineIdx) return line;
-    if (i === lineIdx) return line.slice(0, charIdx);
-    return "";
-  });
-
   const done = lineIdx >= LINES.length;
   const activeLine = done ? LINES.length - 1 : lineIdx;
+
+  const visible = LINES.map((line, i) => {
+    if (i < lineIdx) return line;
+    if (i === lineIdx) {
+      // Apply scramble lookahead only on the DEPLOYING status line
+      return i === 2
+        ? buildScrambleLine(line, charIdx, scrambleTick)
+        : line.slice(0, charIdx);
+    }
+    return "";
+  });
 
   return (
     <div
@@ -69,20 +128,23 @@ export function ProvisionTerminal() {
         </span>
       </div>
       <div
-        className="box-border shrink-0 space-y-3 overflow-y-auto px-4 py-4 font-mono text-[11px] leading-relaxed text-emerald-400/95 sm:space-y-3.5 sm:px-5 sm:py-4 sm:text-xs sm:leading-relaxed"
+        className="box-border shrink-0 space-y-3 overflow-y-auto px-4 py-4 font-mono text-[11px] leading-relaxed sm:space-y-3.5 sm:px-5 sm:py-4 sm:text-xs sm:leading-relaxed"
         style={{ height: BODY_H }}
       >
-        {visible.map((text, i) => (
-          <p key={i} className="break-words">
-            {text}
-            {i === activeLine && !done && (
-              <span className="ml-0.5 inline-block h-4 w-2 translate-y-0.5 animate-pulse bg-emerald-400/80 align-middle" />
-            )}
-            {i === LINES.length - 1 && done && (
-              <span className="ml-0.5 inline-block h-4 w-2 translate-y-0.5 animate-pulse bg-emerald-400/60 align-middle" />
-            )}
-          </p>
-        ))}
+        {visible.map((text, i) => {
+          const isStatusLine = i === 2;
+          return (
+            <p key={i} className={`break-words ${isStatusLine ? "text-amber-300/90" : "text-emerald-400/95"}`}>
+              {text}
+              {i === activeLine && !done && (
+                <span className="ml-0.5 inline-block h-4 w-2 translate-y-0.5 animate-pulse bg-emerald-400/80 align-middle" />
+              )}
+              {i === LINES.length - 1 && done && (
+                <span className="ml-0.5 inline-block h-4 w-2 translate-y-0.5 animate-pulse bg-emerald-400/60 align-middle" />
+              )}
+            </p>
+          );
+        })}
       </div>
     </div>
   );

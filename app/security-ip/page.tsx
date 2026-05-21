@@ -3,7 +3,7 @@ import Link from "next/link";
 import { DocPage } from "@/components/document/DocPage";
 
 export const metadata: Metadata = {
-  title: "Security & IP — Abet",
+  title: "Security & IP",
   description:
     "How Abet provisions into your security perimeter: dedicated hardware, MDM, zero-trust, and ironclad IP assignment under UAE-governed MSAs.",
 };
@@ -19,7 +19,7 @@ export default function SecurityIpPage() {
         <p>
           Embedding an external engineering Pod into a production codebase is a serious security decision. If
           your security posture involves enterprise MDM, a zero-trust access model, IP assignment, or strict
-          data compartmentalization—and it should—you need to know exactly how Abet operates before a
+          data compartmentalization and it should, you need to know exactly how Abet operates before a
           contract is signed.
         </p>
         <p>
@@ -31,7 +31,7 @@ export default function SecurityIpPage() {
       <section id="legal" aria-labelledby="legal-heading">
         <h2 id="legal-heading">Global Jurisdiction. Ironclad IP Assignment.</h2>
         <p>
-          Abet operates under the legal framework of the United Arab Emirates—a global technology and commerce
+          Abet operates under the legal framework of the United Arab Emirates, a global technology and commerce
           hub operating under common law standards on par with London and Singapore. This is a deliberate
           choice. UAE jurisdiction provides a neutral, internationally recognized legal base for global client
           engagements, without the complexity of jurisdiction-specific contract law for clients based in the
@@ -65,7 +65,7 @@ export default function SecurityIpPage() {
         </p>
         <h3>MDM Enrollment Under Your Policy</h3>
         <p>
-          We enroll our dedicated hardware into your Mobile Device Management platform—Microsoft Intune, Jamf,
+          We enroll our dedicated hardware into your Mobile Device Management platform, Microsoft Intune, Jamf,
           Kandji, or your MDM of choice. You define the encryption standards. You hold the remote-wipe
           capability. If a machine is ever compromised, you execute the wipe from your own console. Abet
           engineers operate under your security policy, not a proxy of it.
@@ -81,7 +81,7 @@ export default function SecurityIpPage() {
           For engagements with the highest security requirements, Abet offers Remote-Access Node deployment.
           Our engineers use their dedicated hardware as a portal to access your environment via RDP, Azure
           Virtual Desktop, or VPN. In this configuration, your source code never technically leaves your secure
-          servers. Our architects reach into your environment to build—your codebase does not travel outward.
+          servers. Our architects reach into your environment to build, your codebase does not travel outward.
         </p>
       </section>
 
@@ -89,7 +89,7 @@ export default function SecurityIpPage() {
         <h2 id="network-heading">100% Uptime is an Engineering Problem. We Solved It.</h2>
         <p>
           Engineering velocity depends on connectivity. The Abet Hub in Addis Ababa is engineered as an
-          industrial-grade always-on environment. Downtime is not a risk we manage—it is a failure mode we
+          industrial-grade always-on environment. Downtime is not a risk we manage, it is a failure mode we
           have architecturally eliminated.
         </p>
         <ul>
@@ -98,11 +98,11 @@ export default function SecurityIpPage() {
           </li>
           <li>
             <strong>Starlink Priority Failover:</strong> In the event of local infrastructure disruption, our
-            Pods automatically switch to Starlink satellite backhaul—low-latency, high-throughput, independent
+            Pods automatically switch to Starlink satellite backhaul, low-latency, high-throughput, independent
             of terrestrial network conditions.
           </li>
           <li>
-            <strong>Triple-Redundant Power:</strong> The facility runs on a tiered power architecture—National
+            <strong>Triple-Redundant Power:</strong> The facility runs on a tiered power architecture, National
             Grid primary, generator secondary, UPS battery arrays tertiary. A national power event does not
             stop your sprint.
           </li>

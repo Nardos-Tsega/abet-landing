@@ -15,7 +15,7 @@ export function PillarGrid() {
         Three pillars. One operating system.
       </SectionTitle>
       <SectionLead onDark>
-        Go deep on the model, the execution edge, or the security perimeter—each pillar maps to how Abet
+        Go deep on the model, the execution edge, or the security perimeter, each pillar maps to how Abet
         provisions Pods in production.
       </SectionLead>
 

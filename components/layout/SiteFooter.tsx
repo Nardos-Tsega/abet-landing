@@ -49,8 +49,8 @@ function XIcon() {
 
 export function SiteFooter() {
   return (
-    <div className="relative z-10 flex w-full flex-col bg-[var(--page-canvas)] px-3 pb-[max(0.5rem,env(safe-area-inset-bottom,0px))] pt-2 pl-[max(0.75rem,env(safe-area-inset-left,0px))] pr-[max(0.75rem,env(safe-area-inset-right,0px))] sm:px-5 sm:pb-5 sm:pt-4 sm:pl-5 sm:pr-5 md:px-7 lg:px-10 lg:pb-6">
-      <footer className="mx-auto w-full max-w-[min(100%,88rem)] relative overflow-hidden rounded-xl shadow-[0_24px_80px_-12px_rgba(0,6,38,0.45)] sm:rounded-[2rem] md:rounded-[2.75rem] lg:rounded-[3rem] abet-surface-dark border border-[var(--border-on-dark)]">
+    <div className="relative z-10 flex w-full flex-col bg-[var(--page-canvas)] px-2 pb-[max(0.5rem,env(safe-area-inset-bottom,0px))] pt-2 pl-[max(0.5rem,env(safe-area-inset-left,0px))] pr-[max(0.5rem,env(safe-area-inset-right,0px))] sm:pb-3 lg:pb-5">
+      <footer className="mx-auto w-full max-w-[min(100%,88rem)] relative overflow-hidden rounded-3xl shadow-[0_24px_80px_-12px_rgba(0,6,38,0.45)] abet-surface-dark border border-[var(--border-on-dark)]">
         <div className="mx-auto w-full px-5 lg:px-12">
 
         {/* Five-column nav grid */}
@@ -117,17 +117,21 @@ export function SiteFooter() {
           </div>
         </div>
 
-        {/* Bottom: tagline + CTA row */}
+        {/* Bottom: stop recruiting CTA + tagline */}
         <div className="py-12 lg:py-16">
-          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-semibold leading-[1.06] tracking-[-0.03em] text-white">
+            Stop Recruiting. Start Provisioning.
+          </h2>
+
+          <div className="mt-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             {/* Tagline */}
             <div className="max-w-lg">
               <Link href="/" className="text-lg font-semibold tracking-tight text-white">
                 Abet
               </Link>
-              <h2 className="mt-3 text-2xl font-semibold leading-snug tracking-[-0.025em] text-white sm:text-3xl">
+              <p className="mt-3 text-lg leading-snug text-stone-400">
                 To eliminate the latency between human ambition and technical execution.
-              </h2>
+              </p>
             </div>
 
             {/* CTA + social */}

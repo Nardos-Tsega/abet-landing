@@ -30,7 +30,7 @@ export function BenchmarkStrip() {
           <Link
             key={card.key}
             href={card.href}
-            className="group relative flex min-h-[20rem] flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] transition-[border-color,transform] hover:-translate-y-0.5 hover:border-white/20"
+            className="group relative flex min-h-[20rem] flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] transition-[border-color,transform] hover:-translate-y-0.5 hover:border-white/20"
           >
             <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden">
               <Image

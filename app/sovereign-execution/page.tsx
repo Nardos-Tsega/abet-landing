@@ -3,7 +3,7 @@ import Link from "next/link";
 import { DocPage } from "@/components/document/DocPage";
 
 export const metadata: Metadata = {
-  title: "Sovereign Execution — Abet",
+  title: "Sovereign Execution",
   description:
     "The Build-First Economy. Near-zero churn. Pods forged on national-scale infrastructure.",
 };
@@ -25,7 +25,7 @@ export default function SovereignExecutionPage() {
         <p>That experience was real. And it was a product of where that talent was built.</p>
         <p>
           Abet is not sourced from the same markets. The engineers we deploy come from a fundamentally
-          different formation environment—one that produces a specific kind of builder that saturated offshore
+          different formation environment, one that produces a specific kind of builder that saturated offshore
           markets cannot replicate.
         </p>
       </section>
@@ -38,13 +38,13 @@ export default function SovereignExecutionPage() {
         </p>
         <p>
           The engineers in Abet&apos;s network have worked on the infrastructure that an entire nation runs
-          on—national payment platforms processing millions of transactions daily, aviation reservation and
+          on, national payment platforms processing millions of transactions daily, aviation reservation and
           operations systems, ride-hailing platforms scaled to the density of a major African city, fintech
           infrastructure serving populations that had no prior banking access.
         </p>
         <p>
           These are not CRUD applications. These are systems where a failed deployment doesn&apos;t mean a
-          degraded user experience—it means a payment rail goes down, a flight doesn&apos;t board, a city
+          degraded user experience, it means a payment rail goes down, a flight doesn&apos;t board, a city
           stops moving. Engineers forged in that environment develop a systems-level instinct that you
           cannot teach and cannot replicate by assigning tickets.
         </p>
@@ -57,13 +57,13 @@ export default function SovereignExecutionPage() {
         <h2 id="churn-heading">The Engineer Who Stays.</h2>
         <p>
           Saturated offshore markets—Eastern Europe, South and Southeast Asia—are bleeding from wage inflation
-          and 12-month job-hopping cycles. The pattern is well-documented: an engineer joins a foreign
+          and 12-month job-hopping cycles. The pattern is well documented: an engineer joins a foreign
           engagement for the salary premium, spends 6–12 months building context in your codebase, and then
           exits for the next premium. You absorb the institutional memory loss and restart the hiring clock.
         </p>
         <p>
           Abet operates in a different incentive environment. The Build-First Economy of Addis Ababa is not
-          yet saturated. The engineers in Abet&apos;s network are not here for a short-term arbitrage—they
+          yet saturated. The engineers in Abet&apos;s network are not here for a short-term arbitrage, they
           are building careers in a frontier ecosystem that rewards longevity and depth of craft.
         </p>
         <p>
@@ -80,7 +80,7 @@ export default function SovereignExecutionPage() {
         <h2 id="environments-heading">Specialized by Design. Not Generalist by Default.</h2>
         <p>
           Abet Pods are deployed exclusively into three high-complexity environments. This is not a
-          positioning choice—it is a talent architecture choice. Generalist capacity is a commodity. The
+          positioning choice, it is a talent architecture choice. Generalist capacity is a commodity. The
           environments below are not.
         </p>
         <h3>Frontier AI</h3>
@@ -97,7 +97,7 @@ export default function SovereignExecutionPage() {
         <h3>FinTech &amp; Ledgers</h3>
         <p>
           Ledger integrity, payment rails, and high-concurrency systems in Rust and Go. For teams where
-          correctness is not a quality metric—it is a legal and operational requirement.
+          correctness is not a quality metric, it is a legal and operational requirement.
         </p>
       </section>
 
@@ -105,12 +105,12 @@ export default function SovereignExecutionPage() {
         <h2 id="us-hours-heading">Your Core Sprint Window. Fully Covered.</h2>
         <p>
           Abet guarantees a minimum 50% overlap with US working hours. Your Pod is live, responsive, and
-          shipping during your core sprint window—standup, code review, unblocking—the moments where async
+          shipping during your core sprint window, standup, code review, unblocking, the moments where async
           falls apart and you need a human on the other end.
         </p>
         <p>
           UTC+3 also delivers 100% overlap with UK and EU sprint cycles for teams running cross-Atlantic
-          operations—a structural advantage, not an afterthought.
+          operations, a structural advantage, not an afterthought.
         </p>
       </section>
 

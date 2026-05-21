@@ -4,7 +4,6 @@ import Link from "next/link";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useRef } from "react";
 import { domainCorridorItems } from "@/lib/home-marketing";
-import { SectionEyebrow } from "@/components/layout/MarketingSection";
 
 /**
  * Scale.com industry keyword cloud — typography-only, no images.
@@ -22,7 +21,6 @@ export function DomainCloud() {
       aria-labelledby="domain-cloud-heading"
     >
       <div className="abet-section-content mx-auto max-w-[min(100%,88rem)] px-5 py-20 sm:px-8 sm:py-28 lg:px-12 lg:py-36">
-        <SectionEyebrow>Where we deploy</SectionEyebrow>
         <p
           id="domain-cloud-heading"
           className="mt-4 max-w-[22ch] text-3xl font-semibold tracking-[-0.03em] text-stone-950 sm:text-4xl"
@@ -73,7 +71,7 @@ export function DomainCloud() {
         {/* Sub-tagline */}
         <p className="mt-12 max-w-2xl text-base text-stone-500 sm:text-lg">
           We don&apos;t build generic apps. We don&apos;t do basic QA. Each environment is a dedicated talent
-          architecture—not a generalist bench.
+          architecture, not a generalist bench.
         </p>
         <Link
           href="#domains"

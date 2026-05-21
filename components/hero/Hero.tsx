@@ -1,7 +1,6 @@
 import { HeroGraphic } from "./HeroGraphic";
 import { HeroText } from "./HeroText";
 import { LogoCloud } from "./LogoCloud";
-import { Navbar } from "./Navbar";
 
 type HeroProps = {
   className?: string;
@@ -12,11 +11,12 @@ export function Hero({ className }: HeroProps) {
     <section
       className={`flex min-h-svh w-full flex-col bg-[var(--page-canvas)] ${className ?? ""}`}
     >
-      <Navbar />
-      <div className="flex min-h-0 flex-1 flex-col px-3 pb-[max(0.5rem,env(safe-area-inset-bottom,0px))] pt-2 pl-[max(0.75rem,env(safe-area-inset-left,0px))] pr-[max(0.75rem,env(safe-area-inset-right,0px))] sm:px-5 sm:pb-5 sm:pt-4 sm:pl-5 sm:pr-5 md:px-7 lg:px-10 lg:pb-6">
+      {/* Spacer matching fixed navbar height so hero content isn't obscured */}
+      <div className="h-14 shrink-0 sm:h-[3.75rem] md:h-16" aria-hidden />
+      <div className="flex min-h-0 flex-1 flex-col px-2 pb-[max(0.5rem,env(safe-area-inset-bottom,0px))] pt-2 pl-[max(0.5rem,env(safe-area-inset-left,0px))] pr-[max(0.5rem,env(safe-area-inset-right,0px))] sm:pb-3 lg:pb-5">
         <div className="mx-auto flex min-h-0 w-full max-w-[min(100%,88rem)] flex-1 flex-col gap-3 sm:gap-4 lg:gap-5">
           <div
-            className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-xl shadow-[0_24px_80px_-12px_rgba(0,6,38,0.45)] sm:rounded-[2rem] md:rounded-[2.75rem] lg:rounded-[3rem]"
+            className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-3xl shadow-[0_24px_80px_-12px_rgba(0,6,38,0.45)]"
             style={{
               backgroundColor: "var(--hero-surface)",
               backgroundImage: `

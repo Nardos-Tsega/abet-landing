@@ -22,19 +22,12 @@ export function StatCallout() {
   }
 
   return (
-    <div className="sticky top-0 z-10 flex w-full flex-col bg-[var(--page-canvas)] px-3 pb-[max(0.5rem,env(safe-area-inset-bottom,0px))] pt-2 pl-[max(0.75rem,env(safe-area-inset-left,0px))] pr-[max(0.75rem,env(safe-area-inset-right,0px))] sm:px-5 sm:pb-5 sm:pt-4 sm:pl-5 sm:pr-5 md:px-7 lg:px-10 lg:pb-6">
-      <section className="mx-auto w-full max-w-[min(100%,88rem)] relative overflow-hidden rounded-xl shadow-[0_24px_80px_-12px_rgba(0,6,38,0.45)] sm:rounded-[2rem] md:rounded-[2.75rem] lg:rounded-[3rem] abet-surface-dark border border-[var(--border-on-dark)]">
+    <div className="sticky top-0 z-10 flex w-full flex-col bg-[var(--page-canvas)] px-2 pb-[max(0.5rem,env(safe-area-inset-bottom,0px))] pt-2 pl-[max(0.5rem,env(safe-area-inset-left,0px))] pr-[max(0.5rem,env(safe-area-inset-right,0px))] sm:pb-3 lg:pb-5">
+      <section className="mx-auto w-full max-w-[min(100%,88rem)] relative overflow-hidden rounded-3xl shadow-[0_24px_80px_-12px_rgba(0,6,38,0.45)] abet-surface-dark border border-[var(--border-on-dark)]">
         <div
           ref={ref}
           className="abet-section-content mx-auto flex w-full max-w-[72rem] flex-col items-center px-5 py-24 text-center sm:px-8 sm:py-32 lg:px-12 lg:py-40"
         >
-        <motion.p
-          {...anim(0)}
-          className="text-[11px] font-semibold uppercase tracking-[0.26em] text-stone-400"
-        >
-          The 21-Day Provisioning Protocol
-        </motion.p>
-
         {/* Giant stat */}
         <motion.div
           {...anim(0.1)}

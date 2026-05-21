@@ -3,7 +3,7 @@ import Link from "next/link";
 import { DocPage } from "@/components/document/DocPage";
 
 export const metadata: Metadata = {
-  title: "The PaaS Model — Abet",
+  title: "The PaaS Model",
   description:
     "Engineering capacity as a utility. Stop buying headcount—provision a standardized Sovereign Pod.",
 };

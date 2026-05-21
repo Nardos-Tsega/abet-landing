@@ -16,9 +16,9 @@ export function HeroGraphic() {
 
           <div className="relative z-10 mx-auto flex w-full min-w-0 max-w-[min(100%,24rem)] shrink-0 flex-col md:max-w-none md:flex-1">
             <ProvisionTerminal />
-            <div className="hidden md:block">
+            {/* <div className="hidden md:block">
               <OutcomeCard />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

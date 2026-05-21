@@ -22,16 +22,8 @@ function NarrativeSectionItem({ item }: { item: NarrativeItem }) {
 
   const content = (
     <>
-      {/* Left: eyebrow + giant animated headline */}
+      {/* Left: headline */}
       <div>
-          <p
-            className={`text-[11px] font-semibold uppercase tracking-[0.24em] ${
-              isDark ? "text-stone-400" : "text-stone-500"
-            }`}
-          >
-            {item.eyebrow}
-          </p>
-
           <AnimatedHeadline
             as="h2"
             delay={0.05}
@@ -117,7 +109,7 @@ function NarrativeSectionItem({ item }: { item: NarrativeItem }) {
     return (
       <section
         className="relative z-10 bg-[var(--page-canvas)]"
-        aria-label={item.eyebrow}
+        aria-label={item.headline}
       >
         <div
           ref={ref}
@@ -130,10 +122,10 @@ function NarrativeSectionItem({ item }: { item: NarrativeItem }) {
   }
 
   return (
-    <div className="sticky top-0 z-10 flex min-h-[100svh] w-full flex-col bg-[var(--page-canvas)] px-3 pb-[max(0.5rem,env(safe-area-inset-bottom,0px))] pt-2 pl-[max(0.75rem,env(safe-area-inset-left,0px))] pr-[max(0.75rem,env(safe-area-inset-right,0px))] sm:px-5 sm:pb-5 sm:pt-4 sm:pl-5 sm:pr-5 md:px-7 lg:px-10 lg:pb-6">
+    <div className="sticky top-0 z-10 flex min-h-[100svh] w-full flex-col bg-[var(--page-canvas)] px-2 pb-[max(0.5rem,env(safe-area-inset-bottom,0px))] pt-2 pl-[max(0.5rem,env(safe-area-inset-left,0px))] pr-[max(0.5rem,env(safe-area-inset-right,0px))] sm:pb-3 lg:pb-5">
       <section
-        className="mx-auto w-full max-w-[min(100%,88rem)] relative overflow-hidden rounded-xl shadow-[0_24px_80px_-12px_rgba(0,6,38,0.45)] sm:rounded-[2rem] md:rounded-[2.75rem] lg:rounded-[3rem] abet-surface-dark border border-[var(--border-on-dark)]"
-        aria-label={item.eyebrow}
+        className="mx-auto w-full max-w-[min(100%,88rem)] relative overflow-hidden rounded-3xl shadow-[0_24px_80px_-12px_rgba(0,6,38,0.45)] abet-surface-dark border border-[var(--border-on-dark)]"
+        aria-label={item.headline}
       >
         <div
           ref={ref}
@@ -146,11 +138,12 @@ function NarrativeSectionItem({ item }: { item: NarrativeItem }) {
   );
 }
 
-/** Renders both narrative sections (Applications then Platform & trust). */
-export function NarrativeSections() {
+/** Renders a slice of narrative sections. Defaults to all. */
+export function NarrativeSections({ from = 0, to }: { from?: number; to?: number }) {
+  const items = narrativeSections.slice(from, to);
   return (
     <>
-      {narrativeSections.map((item) => (
+      {items.map((item) => (
         <NarrativeSectionItem key={item.key} item={item} />
       ))}
     </>
