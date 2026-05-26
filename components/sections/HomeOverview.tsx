@@ -5,6 +5,7 @@ import { CaseStudyCarousel } from "@/components/sections/marketing/CaseStudyCaro
 import { DomainStackedCards } from "@/components/sections/marketing/DomainStackedCards";
 import { TrustTiles } from "@/components/sections/marketing/TrustTiles";
 import { ProtocolScrollToggle } from "@/components/sections/ProtocolScrollToggle";
+import { ConversionSection } from "@/components/sections/ConversionSection";
 
 export function HomeOverview() {
   return (
@@ -23,12 +24,15 @@ export function HomeOverview() {
       {/* 8. The Edge */}
       <NarrativeSections from={2} />
 
-      {/* 9. The 21-Day Provisioning Protocol — stat intro + scroll toggle */}
+      {/* 9. The 21-Day Provisioning Protocol */}
       <StatCallout />
       <ProtocolScrollToggle />
 
       {/* 10. Trust & Security */}
       <TrustTiles />
+
+      {/* Conversion — Start the 21-Day Clock */}
+      <ConversionSection />
 
       {/* 11. Footer */}
       <SiteFooter />

@@ -41,6 +41,32 @@
   --border-subtle: rgba(26, 26, 26, 0.12);
   --border-on-dark: rgba(255, 255, 255, 0.1);
   --text-on-dark: #e8e6e1;
+
+  /* Type scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.75rem;
+  --text-2xl: 2.5rem;
+  --text-3xl: 3.5rem;
+
+  /* Section rhythm */
+  --section-padding: 6rem;
+  --section-padding-md: 4rem;
+  --section-padding-sm: 3rem;
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --section-padding: var(--section-padding-md);
+  }
+}
+
+@media (max-width: 639px) {
+  :root {
+    --section-padding: var(--section-padding-sm);
+  }
 }
 
 @theme inline {
@@ -159,4 +185,57 @@ body {
     rgba(60, 77, 251, 0.28) 65%,
     transparent
   );
+}
+
+/* Screen-reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only:focus,
+.sr-only:focus-visible,
+.focus\:not-sr-only:focus,
+.focus\:not-sr-only:focus-visible {
+  position: fixed;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Visible focus — never suppress without replacement */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.abet-surface-dark :focus-visible,
+.abet-surface-dark-alt :focus-visible,
+footer.abet-surface-dark :focus-visible {
+  outline-color: #ffffff;
+}
+
+/* Minimum touch targets on primary controls */
+button,
+.abet-accent-cta,
+.abet-touch-target,
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+  min-height: 44px;
+}
+
+.abet-marquee-paused .abet-marquee-track {
+  animation-play-state: paused;
 }

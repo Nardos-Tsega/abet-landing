@@ -47,8 +47,8 @@ export const narrativeSections = [
 // ─────────────────────────────────────────────────────────────────────────────
 export const caseStudies = [
   {
-    id: "instance-01",
-    kicker: "Instance 01 — Roadmap Acceleration",
+    id: "roadmap-acceleration",
+    kicker: "Roadmap Acceleration",
     title: "90 → 21 Days",
     outcome:
       "A high-growth tech company needed senior capacity without the 90-day delay. We provisioned a full Sovereign Pod within the 21-Day Protocol.",
@@ -59,8 +59,8 @@ export const caseStudies = [
     imageAlt: "Team collaborating at a desk with laptops",
   },
   {
-    id: "instance-02",
-    kicker: "Instance 02 — Capacity Expansion",
+    id: "capacity-expansion",
+    kicker: "Capacity Expansion",
     title: "+66% Provisioned Capacity",
     outcome:
       "Sprint output alone triggered an immediate expansion of the deployed Pod footprint.",

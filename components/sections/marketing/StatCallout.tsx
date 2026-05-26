@@ -37,7 +37,7 @@ export function StatCallout() {
             21
           </span>
           <span className="ml-2 mt-[0.12em] text-[clamp(1.4rem,4vw,2.6rem)] font-semibold text-[var(--accent-mid)]">
-            days
+            <span className="unit">days</span>
           </span>
         </motion.div>
 

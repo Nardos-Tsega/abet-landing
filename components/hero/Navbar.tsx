@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Fragment, useEffect, useState } from "react";
 import { BRAND_LOGO_SRC } from "@/lib/brand";
+import { CONTACT_HREF } from "@/lib/site-config";
 
 const navLinks = [
   { href: "/the-paas-model", label: "The PaaS Model" },
@@ -12,16 +14,20 @@ const navLinks = [
 ] as const;
 
 export function Navbar() {
-  // true = at page top over the dark hero
-  // false = scrolled → floating glass pill
-  const [atHero, setAtHero] = useState(true);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const [scrolledPastHero, setScrolledPastHero] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setAtHero(window.scrollY < 60);
+    if (!isHome) return;
+
+    const onScroll = () => setScrolledPastHero(window.scrollY >= 60);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isHome]);
+
+  const atHero = isHome && !scrolledPastHero;
 
   return (
     /*
@@ -66,11 +72,11 @@ export function Navbar() {
           ].join(" ")}
         >
           {/* Logo */}
-          <Link href="/" className="flex shrink-0 items-center">
+          <Link href="/" className="flex shrink-0 items-center" aria-label="Abet — go to homepage">
             <span className="relative h-7 w-[6.5rem] sm:h-8 sm:w-[7.25rem]">
               <Image
                 src={BRAND_LOGO_SRC}
-                alt="Abet"
+                alt="Abet — go to homepage"
                 fill
                 className="object-contain object-left"
                 priority
@@ -100,7 +106,11 @@ export function Navbar() {
                 <li>
                   <Link
                     href={item.href}
-                    className="whitespace-nowrap px-1 transition-colors"
+                    aria-current={pathname === item.href ? "page" : undefined}
+                    className={[
+                      "whitespace-nowrap px-1 transition-colors",
+                      pathname === item.href ? "font-semibold text-stone-950" : "",
+                    ].join(" ")}
                   >
                     {item.label}
                   </Link>
@@ -111,14 +121,15 @@ export function Navbar() {
 
           {/* CTA */}
           <Link
-            href="/#protocol"
+            href={CONTACT_HREF}
             className={[
               "abet-accent-cta shrink-0 whitespace-nowrap rounded-full font-semibold",
               "px-4 py-2 text-xs lg:px-5 lg:py-2.5 lg:text-sm",
               "transition-all duration-300",
             ].join(" ")}
           >
-            Initiate the 21-Day Protocol
+            <span className="md:hidden">Get a Pod</span>
+            <span className="hidden md:inline">Start the 21-Day Clock</span>
           </Link>
         </nav>
       </header>

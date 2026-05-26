@@ -10,6 +10,7 @@ import {
 } from "framer-motion";
 import Link from "next/link";
 import { useRef } from "react";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 // ─── Card data ────────────────────────────────────────────────────────────────
 // Positions are expressed as CSS strings so they scale with the viewport.
@@ -153,6 +154,19 @@ function FinTechIllustration({ accent }: { accent: string }) {
 
 type DomainItem = (typeof DOMAINS)[number];
 
+function DomainSelectLink({ heading, href }: { heading: string; href: string }) {
+  return (
+    <Link
+      href={href}
+      className="abet-touch-target absolute bottom-6 left-1/2 z-20 inline-flex -translate-x-1/2 items-center gap-2 rounded-full bg-white px-6 py-3 text-[11px] font-black uppercase tracking-widest text-stone-900 shadow-lg transition-transform duration-200 hover:scale-105"
+    >
+      Select
+      <span className="sr-only"> the {heading} environment</span>
+      <span aria-hidden className="font-normal text-base">→</span>
+    </Link>
+  );
+}
+
 function DomainCard({
   domain,
   smoothP,
@@ -217,12 +231,7 @@ function DomainCard({
           <domain.Illustration accent={domain.accent} />
         </div>
         {/* CTA */}
-        <Link
-          href={domain.href}
-          className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 inline-flex h-11 items-center gap-2 rounded-full bg-white px-6 text-[11px] font-black uppercase tracking-widest text-stone-900 shadow-lg transition-transform duration-200 hover:scale-105"
-        >
-          Select <span aria-hidden className="font-normal text-base">→</span>
-        </Link>
+        <DomainSelectLink heading={domain.heading} href={domain.href} />
       </div>
     </motion.div>
   );
@@ -252,12 +261,7 @@ function MobileCards() {
           </div>
           <div className="relative flex flex-1 items-end justify-center overflow-hidden pb-16 px-6">
             <d.Illustration accent={d.accent} />
-            <Link
-              href={d.href}
-              className="absolute bottom-5 left-1/2 -translate-x-1/2 inline-flex h-11 items-center gap-2 rounded-full bg-white px-6 text-[11px] font-black uppercase tracking-widest text-stone-900"
-            >
-              Select <span aria-hidden>→</span>
-            </Link>
+            <DomainSelectLink heading={d.heading} href={d.href} />
           </div>
         </article>
       ))}
@@ -265,10 +269,9 @@ function MobileCards() {
   );
 }
 
-// ─── Public export ────────────────────────────────────────────────────────────
+// ─── Desktop scroll-driven fan (useScroll only mounts with its target ref) ───
 
-export function DomainStackedCards() {
-  const reduced = useReducedMotion();
+function DomainStackedCardsScroll() {
   const trackRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -276,7 +279,6 @@ export function DomainStackedCards() {
     offset: ["start start", "end end"],
   });
 
-  // Spring-lag smoothing mirrors GSAP scrub:0.4 — gives the slight "follow" feel
   const smoothP = useSpring(scrollYProgress, {
     stiffness: 55,
     damping: 18,
@@ -284,133 +286,131 @@ export function DomainStackedCards() {
   });
 
   return (
-    <section
-      className="relative z-10 bg-[var(--page-canvas)]"
-      aria-labelledby="domains-heading"
-    >
-
-      {/* ── Mobile: heading + snap-scroll carousel ── */}
-      <div className="lg:hidden">
-        <div className="px-5 pb-8 pt-20 sm:px-8 sm:pt-24">
+    <div ref={trackRef} className="relative" style={{ height: "360svh" }}>
+      <div className="sticky top-0 flex h-svh flex-col overflow-hidden">
+        <div className="flex-none px-8 pb-6 pt-24 lg:px-12 lg:pt-28">
           <h2
             id="domains-heading"
             className="text-3xl font-semibold tracking-[-0.03em] text-stone-950 sm:text-4xl"
           >
             Three Environments. One Standard.
           </h2>
-          <p className="mt-4 max-w-2xl text-base text-stone-500 sm:text-lg">
+          <p className="mt-3 max-w-2xl text-base text-stone-500 sm:text-lg">
             We don&apos;t build generic apps. We don&apos;t do basic QA. Select the environment
             that maps to your roadmap.
           </p>
         </div>
-        <div className="px-5 pb-24 sm:px-8">
-          <MobileCards />
-        </div>
-      </div>
-
-      {/* ── Desktop: sticky scroll + fan ── */}
-      {/*
-       * The heading lives INSIDE the sticky panel so it is visible the moment
-       * the section enters the viewport — cards begin animating immediately
-       * with zero dead-scroll after the heading.
-       */}
-      {!reduced && (
-        <div
-          ref={trackRef}
-          className="relative hidden lg:block"
-          style={{ height: "360svh" }}
-        >
-          {/* Sticky viewport — overflow:hidden clips the y-travelling cards */}
-          <div className="sticky top-0 flex h-svh flex-col overflow-hidden">
-
-            {/* Heading — fixed at top of the sticky panel */}
-            <div className="flex-none px-8 pb-6 pt-24 lg:px-12 lg:pt-28">
-              <h2
-                id="domains-heading"
-                className="text-3xl font-semibold tracking-[-0.03em] text-stone-950 sm:text-4xl"
-              >
-                Three Environments. One Standard.
-              </h2>
-              <p className="mt-3 max-w-2xl text-base text-stone-500 sm:text-lg">
-                We don&apos;t build generic apps. We don&apos;t do basic QA. Select the environment
-                that maps to your roadmap.
-              </p>
-            </div>
-
-            {/* Card fan — fills remaining height, centred */}
-            <div className="flex flex-1 items-center justify-center">
-              <div
-                className="relative"
-                style={{
-                  width: "clamp(798px, 82.65vw, 1140px)",
-                  height: "clamp(472px, 47.2vw, 674px)",
-                }}
-              >
-                {DOMAINS.map((domain) => (
-                  <DomainCard key={domain.key} domain={domain} smoothP={smoothP} />
-                ))}
-              </div>
-            </div>
-
+        <div className="flex flex-1 items-center justify-center">
+          <div
+            className="relative"
+            style={{
+              width: "clamp(798px, 82.65vw, 1140px)",
+              height: "clamp(472px, 47.2vw, 674px)",
+            }}
+          >
+            {DOMAINS.map((domain) => (
+              <DomainCard key={domain.key} domain={domain} smoothP={smoothP} />
+            ))}
           </div>
         </div>
-      )}
+      </div>
+    </div>
+  );
+}
 
-      {/* ── Desktop reduced-motion fallback: static fan ── */}
-      {reduced && (
-        <div className="hidden lg:block">
-          <div className="px-8 pb-8 pt-24 lg:px-12 lg:pt-28">
+function DomainStackedCardsStaticDesktop() {
+  return (
+    <>
+      <div className="px-8 pb-8 pt-24 lg:px-12 lg:pt-28">
+        <h2
+          id="domains-heading"
+          className="text-3xl font-semibold tracking-[-0.03em] text-stone-950 sm:text-4xl"
+        >
+          Three Environments. One Standard.
+        </h2>
+        <p className="mt-3 max-w-2xl text-base text-stone-500 sm:text-lg">
+          We don&apos;t build generic apps. We don&apos;t do basic QA. Select the environment
+          that maps to your roadmap.
+        </p>
+      </div>
+      <div className="flex justify-center pb-24">
+        <div
+          className="relative"
+          style={{
+            width: "clamp(798px, 82.65vw, 1140px)",
+            height: "clamp(472px, 47.2vw, 674px)",
+          }}
+        >
+          {DOMAINS.map((d) => (
+            <div
+              key={d.key}
+              className="absolute overflow-hidden rounded-[2rem] border border-white/[0.07] bg-[#0b0b0b] shadow-xl"
+              style={{
+                left: d.cssLeft,
+                top: 0,
+                width: "clamp(280px, 28vw, 400px)",
+                height: "clamp(472px, 47.2vw, 674px)",
+                zIndex: d.zIndex,
+              }}
+            >
+              <div className="flex flex-col items-center px-7 pt-9 pb-6 text-center" style={{ height: "54%" }}>
+                <span className="inline-block rounded-full border border-white/20 px-4 py-1.5 font-mono text-[10px] font-semibold tracking-widest text-stone-400">
+                  {d.badge}
+                </span>
+                <h3 className="mt-5 text-[clamp(1.7rem,2.3vw,2.3rem)] font-extrabold leading-[1.05] tracking-tight text-white">
+                  {d.heading}
+                </h3>
+                <p className="mt-4 text-[0.8rem] leading-relaxed text-stone-500">{d.body}</p>
+              </div>
+              <div className="relative flex flex-1 items-end justify-center overflow-hidden pb-16 px-6">
+                <d.Illustration accent={d.accent} />
+                <DomainSelectLink heading={d.heading} href={d.href} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
+
+// ─── Public export ────────────────────────────────────────────────────────────
+
+export function DomainStackedCards() {
+  const reduced = useReducedMotion();
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+
+  const showAnimatedDesktop = isDesktop && !reduced;
+  const showStaticDesktop = isDesktop && reduced;
+
+  return (
+    <section
+      id="domains"
+      className="relative z-10 scroll-mt-28 bg-[var(--page-canvas)]"
+      aria-labelledby="domains-heading"
+    >
+      {showAnimatedDesktop ? (
+        <DomainStackedCardsScroll />
+      ) : showStaticDesktop ? (
+        <DomainStackedCardsStaticDesktop />
+      ) : (
+        <>
+          <div className="px-5 pb-8 pt-20 sm:px-8 sm:pt-24">
             <h2
               id="domains-heading"
               className="text-3xl font-semibold tracking-[-0.03em] text-stone-950 sm:text-4xl"
             >
               Three Environments. One Standard.
             </h2>
-            <p className="mt-3 max-w-2xl text-base text-stone-500 sm:text-lg">
+            <p className="mt-4 max-w-2xl text-base text-stone-500 sm:text-lg">
               We don&apos;t build generic apps. We don&apos;t do basic QA. Select the environment
               that maps to your roadmap.
             </p>
           </div>
-          <div className="flex justify-center pb-24">
-            <div
-              className="relative"
-              style={{
-                width: "clamp(798px, 82.65vw, 1140px)",
-                height: "clamp(472px, 47.2vw, 674px)",
-              }}
-            >
-              {DOMAINS.map((d) => (
-                <div
-                  key={d.key}
-                  className="absolute overflow-hidden rounded-[2rem] border border-white/[0.07] bg-[#0b0b0b] shadow-xl"
-                  style={{
-                    left: d.cssLeft,
-                    top: 0,
-                    width: "clamp(280px, 28vw, 400px)",
-                    height: "clamp(472px, 47.2vw, 674px)",
-                    zIndex: d.zIndex,
-                  }}
-                >
-                  <div className="flex flex-col items-center px-7 pt-9 pb-6 text-center" style={{ height: "54%" }}>
-                    <span className="inline-block rounded-full border border-white/20 px-4 py-1.5 font-mono text-[10px] font-semibold tracking-widest text-stone-400">
-                      {d.badge}
-                    </span>
-                    <h3 className="mt-5 text-[clamp(1.7rem,2.3vw,2.3rem)] font-extrabold leading-[1.05] tracking-tight text-white">
-                      {d.heading}
-                    </h3>
-                    <p className="mt-4 text-[0.8rem] leading-relaxed text-stone-500">{d.body}</p>
-                  </div>
-                  <div className="relative flex flex-1 items-end justify-center overflow-hidden pb-16 px-6">
-                    <d.Illustration accent={d.accent} />
-                    <Link href={d.href} className="absolute bottom-6 left-1/2 -translate-x-1/2 inline-flex h-11 items-center gap-2 rounded-full bg-white px-6 text-[11px] font-black uppercase tracking-widest text-stone-900">
-                      Select <span aria-hidden>→</span>
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div className="px-5 pb-24 sm:px-8">
+            <MobileCards />
           </div>
-        </div>
+        </>
       )}
     </section>
   );

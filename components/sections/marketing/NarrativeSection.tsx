@@ -15,11 +15,6 @@ function NarrativeSectionItem({ item }: { item: NarrativeItem }) {
 
   const isDark = item.tone === "dark";
 
-  const fadeUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
-  };
-
   const content = (
     <>
       {/* Left: headline */}
@@ -51,7 +46,9 @@ function NarrativeSectionItem({ item }: { item: NarrativeItem }) {
             <span
               className={`text-sm font-medium ${isDark ? "text-stone-300" : "text-stone-600"}`}
             >
-              {item.stat.unit} {item.stat.label}
+              <span className="unit">{item.stat.unit}</span>
+              {" "}
+              {item.stat.label}
             </span>
           </motion.div>
         </div>
@@ -94,7 +91,7 @@ function NarrativeSectionItem({ item }: { item: NarrativeItem }) {
           >
             <Link
               href={item.cta.href}
-              className={`inline-flex items-center gap-2 text-sm font-semibold after:content-['→'] after:transition-transform hover:after:translate-x-0.5 ${
+              className={`abet-touch-target inline-flex items-center gap-2 py-2 text-sm font-semibold after:content-['→'] after:transition-transform hover:after:translate-x-0.5 ${
                 isDark ? "text-white" : "text-stone-900"
               }`}
             >

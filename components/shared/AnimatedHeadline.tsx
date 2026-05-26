@@ -1,14 +1,13 @@
 "use client";
 
 import { motion, useReducedMotion, useInView } from "framer-motion";
-import { useRef, type ElementType, type ReactNode } from "react";
+import { useRef, type ElementType } from "react";
 
 type AnimatedHeadlineProps = {
   children: string;
   as?: ElementType;
   className?: string;
   id?: string;
-  /** Delay before the first word appears (seconds) */
   delay?: number;
 };
 
@@ -25,9 +24,8 @@ const containerVariants = {
 };
 
 /**
- * Scale.com-style word-by-word headline reveal.
- * Splits the string on spaces and animates each word independently.
- * Respects prefers-reduced-motion.
+ * Word-by-word headline reveal using a real heading element.
+ * Preserves spaces between words for screen readers and copy-paste.
  */
 export function AnimatedHeadline({
   children,
@@ -51,28 +49,29 @@ export function AnimatedHeadline({
     );
   }
 
+  const MotionTag = motion.h2;
+
   return (
-    <motion.div
-      ref={ref as React.RefObject<HTMLDivElement>}
+    <MotionTag
+      ref={ref as React.RefObject<HTMLHeadingElement>}
       id={id}
-      className={`flex flex-wrap gap-x-[0.28em] gap-y-0 leading-[inherit] ${className}`}
+      className={className}
       variants={containerVariants}
       custom={delay}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
-      aria-label={children}
     >
       {words.map((word, i) => (
         <motion.span
-          key={i}
+          key={`${word}-${i}`}
           variants={wordVariants}
           transition={{ duration: 0.55, ease: "easeOut" }}
           className="inline-block"
-          aria-hidden
         >
           {word}
+          {i < words.length - 1 ? " " : ""}
         </motion.span>
       ))}
-    </motion.div>
+    </MotionTag>
   );
 }

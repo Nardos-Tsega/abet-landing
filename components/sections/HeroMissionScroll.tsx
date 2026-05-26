@@ -38,10 +38,9 @@ function useNarrowStackedLayout() {
   return useSyncExternalStore(subscribeNarrowViewport, getNarrowViewport, () => false);
 }
 
-export function HeroMissionScroll() {
+/** Scroll album — useScroll only runs when this component (and its target ref) is mounted. */
+function HeroMissionAlbum() {
   const trackRef = useRef<HTMLDivElement>(null);
-  const reducedMotion = useReducedMotion();
-  const narrowStacked = useNarrowStackedLayout();
 
   const { scrollYProgress } = useScroll({
     target: trackRef,
@@ -104,15 +103,6 @@ export function HeroMissionScroll() {
     setMissionInteractive(v > 0.2);
   });
 
-  if (reducedMotion || narrowStacked) {
-    return (
-      <>
-        <Hero />
-        <MissionSection />
-      </>
-    );
-  }
-
   return (
     <div
       ref={trackRef}
@@ -153,4 +143,20 @@ export function HeroMissionScroll() {
       </div>
     </div>
   );
+}
+
+export function HeroMissionScroll() {
+  const reducedMotion = useReducedMotion();
+  const narrowStacked = useNarrowStackedLayout();
+
+  if (reducedMotion || narrowStacked) {
+    return (
+      <>
+        <Hero />
+        <MissionSection />
+      </>
+    );
+  }
+
+  return <HeroMissionAlbum />;
 }

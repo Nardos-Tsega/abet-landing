@@ -1,5 +1,4 @@
 import { SurfaceGrid } from "@/components/shared/SurfaceGrid";
-import { OutcomeCard } from "./OutcomeCard";
 import { PodInfraTiles } from "./PodInfraTiles";
 import { ProvisionTerminal } from "./ProvisionTerminal";
 

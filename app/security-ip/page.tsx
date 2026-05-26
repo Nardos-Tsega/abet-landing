@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { DocPage } from "@/components/document/DocPage";
+import { CONTACT_HREF } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Security & IP",
   description:
-    "How Abet provisions into your security perimeter: dedicated hardware, MDM, zero-trust, and ironclad IP assignment under UAE-governed MSAs.",
+    "CTO-ready security architecture: dedicated hardware, your MDM, zero-trust via your IdP, and ironclad IP assignment. Built for enterprise review.",
 };
 
 export default function SecurityIpPage() {
@@ -13,6 +14,7 @@ export default function SecurityIpPage() {
     <DocPage
       title="Engineered for the Enterprise."
       description="High-stakes technical environments require an ironclad security perimeter. Here is exactly how Abet provides it."
+      current="/security-ip"
     >
       <section id="objection-security" aria-labelledby="objection-security-heading">
         <h2 id="objection-security-heading">Your Security Team Will Have Questions. Here Are the Answers.</h2>
@@ -154,12 +156,20 @@ export default function SecurityIpPage() {
           If your security review requires documentation beyond what&apos;s on this page, we provide it
           during the onboarding process. No surprises at the contract stage.
         </p>
-        <Link
-          href="/#protocol"
-          className="abet-accent-cta mt-6 inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold"
-        >
-          Initiate the 21-Day Protocol
-        </Link>
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+          <Link
+            href={CONTACT_HREF}
+            className="abet-accent-cta abet-touch-target inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold"
+          >
+            Request the security questionnaire
+          </Link>
+          <Link
+            href="/security-ip#legal"
+            className="abet-touch-target inline-flex items-center justify-center rounded-full border border-stone-300 bg-white px-6 py-3 text-sm font-semibold text-stone-900 transition-colors hover:border-stone-400"
+          >
+            Read the legal framework
+          </Link>
+        </div>
       </section>
     </DocPage>
   );

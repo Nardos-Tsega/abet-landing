@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { DocPage } from "@/components/document/DocPage";
+import { ComparisonTable } from "@/components/document/ComparisonTable";
+import { CONTACT_EMAIL, CONTACT_HREF } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "The PaaS Model",
   description:
-    "Engineering capacity as a utility. Stop buying headcount—provision a standardized Sovereign Pod.",
+    "Compare traditional senior hiring to a Sovereign Pod: 3 engineers, 21 days to first commit, fixed OpEx, and no single point of failure.",
 };
 
 export default function PaasModelPage() {
@@ -13,6 +15,7 @@ export default function PaasModelPage() {
     <DocPage
       title="Engineering Capacity as a Utility."
       description="You provision AWS compute in seconds. Why is your engineering capacity a 90-day bottleneck?"
+      current="/the-paas-model"
     >
       <section id="broken-model" aria-labelledby="broken-model-heading">
         <h2 id="broken-model-heading">The Architecture of Hiring is Fundamentally Flawed.</h2>
@@ -125,16 +128,7 @@ export default function PaasModelPage() {
 
       <section id="cost-architecture" aria-labelledby="cost-heading">
         <h2 id="cost-heading">One Salary. One Pod. Zero Compromise.</h2>
-        <p>
-          <strong>Traditional Senior Hire</strong> → Time to first commit: 90+ days / Headcount: 1 /
-          Recruitment fee: ~20% of salary / Equity dilution: Yes / Single point of failure: Yes / Scaling
-          timeline: 90+ days per hire / Monthly cost: 1× senior salary + overhead
-        </p>
-        <p>
-          <strong>Sovereign Pod</strong> → Time to first commit: 21 days / Headcount: 3 (1 Lead + 2 Senior)
-          / Recruitment fee: None / Equity dilution: None / Single point of failure: No—hot-swap redundancy
-          built in / Scaling timeline: 21 days per additional Pod / Monthly cost: Fixed subscription OpEx
-        </p>
+        <ComparisonTable />
         <p className="font-medium text-stone-900">
           The model is not cheaper. It is structurally superior at the same cost.
         </p>
@@ -143,12 +137,20 @@ export default function PaasModelPage() {
       <section className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--surface-section-muted)] p-6 sm:p-8">
         <h2 className="!mt-0 font-serif text-2xl font-semibold text-stone-900">Your Pod is 21 Days Out.</h2>
         <p className="!mt-3 text-stone-700">Your roadmap cannot wait 90 days.</p>
-        <Link
-          href="/#protocol"
-          className="abet-accent-cta mt-6 inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold"
-        >
-          Initiate the 21-Day Protocol
-        </Link>
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+          <Link
+            href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Comparison brief request")}`}
+            className="abet-accent-cta abet-touch-target inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold"
+          >
+            Download the comparison brief
+          </Link>
+          <Link
+            href={CONTACT_HREF}
+            className="abet-touch-target inline-flex items-center justify-center rounded-full border border-stone-300 bg-white px-6 py-3 text-sm font-semibold text-stone-900 transition-colors hover:border-stone-400"
+          >
+            Start the 21-Day Clock
+          </Link>
+        </div>
       </section>
     </DocPage>
   );

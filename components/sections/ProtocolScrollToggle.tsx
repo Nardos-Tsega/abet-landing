@@ -3,6 +3,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 const steps = [
   {
@@ -273,63 +274,42 @@ function ProtocolDesktop() {
 
 export function ProtocolScrollToggle() {
   const reduced = useReducedMotion();
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const showDesktop = isDesktop && !reduced;
 
   return (
     <div
       id="protocol"
-      className="relative z-10 bg-[var(--page-canvas)] px-2 pb-[max(0.5rem,env(safe-area-inset-bottom,0px))] pt-2 pl-[max(0.5rem,env(safe-area-inset-left,0px))] pr-[max(0.5rem,env(safe-area-inset-right,0px))] sm:pb-3 lg:pb-5"
+      className="relative z-10 scroll-mt-28 bg-[var(--page-canvas)] px-2 pb-[max(0.5rem,env(safe-area-inset-bottom,0px))] pt-2 pl-[max(0.5rem,env(safe-area-inset-left,0px))] pr-[max(0.5rem,env(safe-area-inset-right,0px))] sm:pb-3 lg:pb-5"
     >
-      {/* ── Mobile + tablet: static card ── */}
-      <div className={`lg:hidden ${CARD_CLS}`}>
-        <div className="px-5 pt-8 sm:px-8 sm:pt-10">
-          <h2 className="text-2xl font-semibold tracking-[-0.025em] text-white sm:text-3xl">
-            The 21-Day Provisioning Protocol.
-          </h2>
-          <p className="mt-2.5 text-sm text-stone-400 sm:text-base">
-            From contract signature to sovereign code in three weeks.
-          </p>
-        </div>
-        <div className="px-5 py-6 sm:px-8 sm:py-8">
-          <ProtocolMobile />
-        </div>
-        <div className="border-t border-white/8 px-5 py-6 sm:px-8 sm:py-7">
-          <Link
-            href="/the-paas-model"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-stone-300 underline decoration-stone-600 underline-offset-4 transition-colors hover:text-white"
-          >
-            Read the full PaaS model <span aria-hidden>→</span>
-          </Link>
-        </div>
-      </div>
-
-      {/* ── Desktop: scroll capture (animated) ── */}
-      {!reduced && (
+      {showDesktop ? (
         <div className="hidden lg:block">
           <ProtocolDesktop />
         </div>
-      )}
-
-      {/* ── Desktop: reduced-motion static card ── */}
-      {reduced && (
-        <div className={`hidden lg:block ${CARD_CLS}`}>
-          <div className="px-12 pt-11">
-            <h2 className="text-[clamp(1.35rem,2.4vw,2rem)] font-semibold tracking-[-0.03em] text-white">
+      ) : (
+        <div className={CARD_CLS}>
+          <div className="px-5 pt-8 sm:px-8 sm:pt-10">
+            <h2 className="text-2xl font-semibold tracking-[-0.025em] text-white sm:text-3xl">
               The 21-Day Provisioning Protocol.
             </h2>
-            <p className="mt-2.5 text-sm text-stone-400">
+            <p className="mt-2.5 text-sm text-stone-400 sm:text-base">
               From contract signature to sovereign code in three weeks.
             </p>
           </div>
-          <div className="px-12 py-10">
+          <div className="px-5 py-6 sm:px-8 sm:py-8">
             <ProtocolMobile />
           </div>
-          <div className="border-t border-white/8 px-12 py-8">
-            <Link href="/the-paas-model" className="inline-flex items-center gap-2 text-sm font-semibold text-stone-300 underline decoration-stone-600 underline-offset-4">
+          <div className="border-t border-white/8 px-5 py-6 sm:px-8 sm:py-7">
+            <Link
+              href="/the-paas-model"
+              className="abet-touch-target inline-flex items-center gap-2 text-sm font-semibold text-stone-300 underline decoration-stone-600 underline-offset-4 transition-colors hover:text-white"
+            >
               Read the full PaaS model <span aria-hidden>→</span>
             </Link>
           </div>
         </div>
       )}
+
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import { PageCurtain } from "@/components/layout/PageCurtain";
+import { SkipLink } from "@/components/layout/SkipLink";
 import { Navbar } from "@/components/hero/Navbar";
 import "./globals.css";
 
@@ -23,7 +24,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Abet — Subscription Engineering Pods for Frontier Tech",
   description:
-    "Provision a fully sovereign, 3-person engineering Pod into your stack in 21 days. Same cost as one local senior hire.",
+    "Stop waiting 90 days to hire. Abet embeds a 3-person senior engineering Pod in your stack in 21 days—same cost as one local senior hire.",
 };
 
 export default function RootLayout({
@@ -37,6 +38,7 @@ export default function RootLayout({
       className={`${aeonik.variable} ${geistMono.variable} min-h-svh h-full bg-[var(--page-canvas)] antialiased`}
     >
       <body className="min-h-svh flex flex-col bg-[var(--page-canvas)] font-sans">
+        <SkipLink />
         <PageCurtain />
         <Navbar />
         {children}

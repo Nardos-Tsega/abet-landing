@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { DocPage } from "@/components/document/DocPage";
+import { CONTACT_HREF } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Sovereign Execution",
   description:
-    "The Build-First Economy. Near-zero churn. Pods forged on national-scale infrastructure.",
+    "Engineers forged on national-scale infrastructure in Addis Ababa. Near-zero churn, 50%+ US hours overlap, and specialized Pods for AI, mobile, and fintech.",
 };
 
 export default function SovereignExecutionPage() {
@@ -13,6 +14,7 @@ export default function SovereignExecutionPage() {
     <DocPage
       title="The Build-First Economy."
       description="We didn&apos;t build our talent in maintenance shops. We built it in the trenches of national-scale infrastructure."
+      current="/sovereign-execution"
     >
       <section id="objection" aria-labelledby="objection-heading">
         <h2 id="objection-heading">You&apos;ve Heard &ldquo;World-Class Offshore Engineers&rdquo; Before.</h2>
@@ -67,8 +69,8 @@ export default function SovereignExecutionPage() {
           are building careers in a frontier ecosystem that rewards longevity and depth of craft.
         </p>
         <p>
-          The result: zero churn across our deployed Pod engagements to date. Not low churn. Not managed
-          churn. Zero.
+          The result: near-zero churn across our deployed Pod engagements to date—not the wage-hopping
+          cycles common in saturated offshore markets.
         </p>
         <p>
           When your Pod is live, it stays live. The architect who pushes your first PR on day 21 is the same
@@ -121,12 +123,20 @@ export default function SovereignExecutionPage() {
         <p className="!mt-3 text-stone-700">
           Stop paying the talent scarcity tax of saturated markets. Your Pod is 21 days out.
         </p>
-        <Link
-          href="/#protocol"
-          className="abet-accent-cta mt-6 inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold"
-        >
-          Initiate the 21-Day Protocol
-        </Link>
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+          <Link
+            href={CONTACT_HREF}
+            className="abet-accent-cta abet-touch-target inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold"
+          >
+            Book a technical intro call
+          </Link>
+          <Link
+            href="/#domains"
+            className="abet-touch-target inline-flex items-center justify-center rounded-full border border-stone-300 bg-white px-6 py-3 text-sm font-semibold text-stone-900 transition-colors hover:border-stone-400"
+          >
+            See Pod specializations
+          </Link>
+        </div>
       </section>
     </DocPage>
   );
